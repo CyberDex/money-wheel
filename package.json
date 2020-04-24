@@ -7,6 +7,7 @@
 	"repository": "https://github.com/CyberDex/typescript-boilerplate",
 	"license": "MIT",
 	"devDependencies": {
+		"@types/pixi.js": "^5.0.0",
 		"webpack-typescript-boilerplate": "^1.0.9"
 	},
 	"dependencies": {
