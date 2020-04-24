@@ -4,7 +4,7 @@ import { BaseScene } from './scenes/BaseScene'
 import { SplashScene } from './scenes/SplashScene'
 import { GameScene } from './scenes/GameScene'
 import { UIScene } from './scenes/UIScene'
-import { Scenes } from './helpers/Scenes'
+import { Scenes } from './helpers/enums/Scenes'
 
 new class Game extends Application {
     private sceneManager: SceneManager
