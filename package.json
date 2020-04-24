@@ -9,5 +9,7 @@
 	"devDependencies": {
 		"webpack-typescript-boilerplate": "^1.0.9"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"pixi.js": "^4.8.9"
+	}
 }
