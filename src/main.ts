@@ -16,13 +16,12 @@ new class Game extends Application {
         super()
         this.init()
         window.addEventListener('resize', () => this.resizeHandler())
+        document.body.appendChild(this.view)
     }
 
-    public async init() {
+    private init() {
         this.initScenes()
         this.startScene(Scenes.SPLASH)
-
-        document.body.appendChild(this.view)
         this.resizeHandler()
     }
 
