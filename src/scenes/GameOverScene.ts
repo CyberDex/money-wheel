@@ -14,10 +14,6 @@ export class GameOverScene extends View {
 
     constructor() {
         super()
-        console.log(
-            lang[Texts.GAME_OVER_TEXT]
-        );
-
         this.text = this.addText(lang[Texts.GAME_OVER_TITLE], styles.title)
         this.balance = this.addText(lang[Texts.GAME_OVER_TEXT], styles.subTitle)
 
