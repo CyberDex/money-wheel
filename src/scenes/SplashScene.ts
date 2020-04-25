@@ -4,6 +4,8 @@ import { Texts } from 'helpers/enums/Texts'
 import * as lang from '../config/local/en.json'
 import * as styles from '../config/styles.json'
 import * as config from '../config/SplashScene.json'
+import { store } from '../redux/store'
+import { startGame } from 'redux/actions'
 
 export class SplashScene extends View {
     private text: Text
@@ -29,6 +31,9 @@ export class SplashScene extends View {
             config.button.radius
         )
         this.addChild(this.startButton)
+        this.startButton.onClick(() => {
+            store.dispatch(startGame(this.slider.value))
+        })
     }
 
     public resize(w, h: number) {
