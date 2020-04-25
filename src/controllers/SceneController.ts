@@ -15,6 +15,14 @@ export class SceneController {
         this.addScene(Scenes.SPLASH, new SplashScene())
     }
 
+    public show(scene: Scenes) {
+        this.scenes[scene].visible = true
+    }
+
+    public hide(scene: Scenes) {
+        this.scenes[scene].visible = false
+    }
+
     public resize() {
         for (const scene in this.scenes) {
             this.scenes[scene].resize()
@@ -22,6 +30,7 @@ export class SceneController {
     }
 
     public addScene(scene: Scenes, sceneInst: View) {
+        sceneInst.visible = false
         this.scenes[scene] = sceneInst
         this.app.stage.addChild(sceneInst)
     }
