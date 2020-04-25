@@ -4,5 +4,11 @@
     "slider": {
         "w": 300,
         "h": 30
+    },
+    "button": {
+        "widht": 150,
+        "height": 70,
+        "radius": 35,
+        "color": "0xDE3249"
     }
 }

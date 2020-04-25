@@ -2,20 +2,16 @@
     "starting_balance": {
         "fontFamily": "Arial",
         "fontSize": 36,
-        "fontStyle": "italic",
         "fontWeight": "bold",
         "fill": [
-            "#ffffff",
-            "#00ff99"
-        ],
-        "stroke": "#4a1850",
-        "strokeThickness": 5,
-        "dropShadow": true,
-        "dropShadowColor": "#000000",
-        "dropShadowBlur": 4,
-        "dropShadowAngle": 0.523,
-        "dropShadowDistance": 6,
-        "wordWrap": true,
-        "wordWrapWidth": 440
+            "#f76074",
+            "#DE3249"
+        ]
+    },
+    "start_button": {
+        "fontFamily": "Arial",
+        "fontSize": 24,
+        "fontWeight": "bold",
+        "fill": "#ffffff"
     }
 }
