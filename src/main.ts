@@ -1,5 +1,6 @@
 import { App } from 'Pixil'
 import { SceneController } from 'controllers/SceneController'
+import { Scenes } from 'helpers/enums/Scenes'
 
 new class Game extends App {
     private sceneController: SceneController
@@ -7,9 +8,13 @@ new class Game extends App {
     constructor() {
         super()
         this.sceneController = new SceneController(this)
+        this.sceneController.show(Scenes.SPLASH)
+        this.resizeHandler()
     }
 
     public resizeHandler() {
-        this.sceneController.resize()
+        const w = this.renderer.width
+        const h = this.renderer.height
+        this.sceneController.resize(w, h)
     }
 }

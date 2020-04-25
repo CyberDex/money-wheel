@@ -23,9 +23,9 @@ export class SceneController {
         this.scenes[scene].visible = false
     }
 
-    public resize() {
+    public resize(w, h: number) {
         for (const scene in this.scenes) {
-            this.scenes[scene].resize()
+            this.scenes[scene].resize(w, h)
         }
     }
 
