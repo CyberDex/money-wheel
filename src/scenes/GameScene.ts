@@ -1,13 +1,6 @@
-import { BaseScene } from './BaseScene'
+import { View } from '@Pixil'
 
-export class GameScene extends BaseScene {
-
-    public init(): void {
-    }
-
-    public update(delta: number): void {
-    }
-
-    public resize() {
+export class GameScene extends View {
+    private resize() {
     }
 }
