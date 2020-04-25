@@ -2,9 +2,8 @@
     "compilerOptions": {
         "baseUrl": "./src",
         "paths": {
-            "@*": [
-                "*",
-                "../submodules/*"
+            "Pixil": [
+                "../submodules/Pixil"
             ]
         },
         "module": "commonjs",

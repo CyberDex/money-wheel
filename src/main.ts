@@ -1,4 +1,4 @@
-import { View, App } from '@Pixil'
+import { View, App } from 'Pixil'
 import { SplashScene } from './scenes/SplashScene'
 import { GameScene } from './scenes/GameScene'
 import { UIScene } from './scenes/UIScene'
@@ -26,6 +26,7 @@ new class Game extends App {
     }
 
     public resizeHandler() {
+        super.resizeHandler()
         for (const scene in this.scenes) {
             this.scenes[scene].resize()
         }

@@ -1,6 +1,6 @@
-import { View } from '@Pixil'
+import { View } from 'Pixil'
 
 export class UIScene extends View {
-    protected resize() {
+    public resize() {
     }
 }
