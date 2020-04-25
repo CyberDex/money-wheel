@@ -1,50 +1,46 @@
-import { View, Slider, Button } from 'Pixil'
-import { Text, TextStyle } from 'pixi.js'
+import { View, Button } from 'Pixil'
+import { Text } from 'pixi.js'
 import { Texts } from 'helpers/enums/Texts'
 import * as lang from '../config/local/en.json'
 import * as styles from '../config/styles.json'
 import * as config from '../config/SplashScene.json'
 import { store } from '../redux/store'
-import { startGame } from 'redux/actions'
+import { Actions } from '../helpers/enums/Actions';
 
-export class SplashScene extends View {
+export class GameOverScene extends View {
     private text: Text
     private balance: Text
-    private slider: Slider
     private startButton: Button
 
     constructor() {
         super()
-        this.text = this.addText(lang[Texts.START_TITLE], styles.title as TextStyle)
-        this.balance = this.addText(String(config.minCoins), styles.subTitle as TextStyle)
+        console.log(
+            lang[Texts.GAME_OVER_TEXT]
+        );
 
-        this.slider = new Slider(config.slider.w, config.slider.h, config.minCoins, config.maxCoins)
-        this.slider.onChange(value => this.balance.text = String(value))
-        this.addChild(this.slider)
+        this.text = this.addText(lang[Texts.GAME_OVER_TITLE], styles.title)
+        this.balance = this.addText(lang[Texts.GAME_OVER_TEXT], styles.subTitle)
 
         this.startButton = new Button(
             config.button.widht,
             config.button.height,
-            lang[Texts.START_BUTTON],
+            lang[Texts.GAME_OVER_BUTTON],
             styles.button,
             Number(config.button.color),
             config.button.radius
         )
         this.addChild(this.startButton)
         this.startButton.onClick(() => {
-            store.dispatch(startGame(this.slider.value))
+            store.dispatch({ type: Actions.INIT })
         })
     }
 
     public resize(w, h: number) {
         this.text.x = w * .5
-        this.text.y = h * .25
+        this.text.y = h * .4
 
         this.balance.x = w * .5
-        this.balance.y = h * .4
-
-        this.slider.x = w / 2 - config.slider.w / 2
-        this.slider.y = h * .5
+        this.balance.y = h * .5
 
         this.startButton.x = w / 2
         this.startButton.y = h * .7

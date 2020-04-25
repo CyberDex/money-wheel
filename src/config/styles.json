@@ -1,5 +1,5 @@
 {
-    "starting_balance": {
+    "title": {
         "fontFamily": "Arial",
         "fontSize": 36,
         "fontWeight": "bold",
@@ -8,7 +8,13 @@
             "#DE3249"
         ]
     },
-    "start_button": {
+    "subTitle": {
+        "fontFamily": "Arial",
+        "fontSize": 27,
+        "fontWeight": "bold",
+        "fill": "#ffffff"
+    },
+    "button": {
         "fontFamily": "Arial",
         "fontSize": 24,
         "fontWeight": "bold",

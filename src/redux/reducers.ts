@@ -10,6 +10,11 @@ const initialState: IAppState = {
 
 export function mainReducer(state: IAppState = initialState, action: IAction) {
     switch (action.type) {
+        case Actions.INIT:
+            return {
+                ...state,
+                state: States.INIT
+            }
         case Actions.START_GAME:
             return {
                 ...state,

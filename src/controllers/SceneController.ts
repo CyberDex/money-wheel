@@ -6,6 +6,7 @@ import { Scenes } from '../helpers/enums/Scenes'
 import { gsap } from "gsap"
 import { States } from '../helpers/enums/States'
 import { store } from 'redux/store'
+import { GameOverScene } from 'scenes/GameOverScene'
 
 export class SceneController {
     private scenes: {
@@ -16,15 +17,23 @@ export class SceneController {
         this.addScene(Scenes.UI, new UIScene())
         this.addScene(Scenes.GAME, new GameScene())
         this.addScene(Scenes.SPLASH, new SplashScene())
+        this.addScene(Scenes.GAME_OVER, new GameOverScene())
 
         store.subscribe(() => this.stateChange())
     }
 
     private stateChange() {
         switch (store.getState().state) {
+            case States.INIT:
+                this.hide(Scenes.GAME)
+                this.hide(Scenes.GAME_OVER)
+                this.hide(Scenes.UI)
+                this.show(Scenes.SPLASH)
+                break;
             case States.BETTING:
                 this.hide(Scenes.SPLASH)
                 this.show(Scenes.GAME)
+                this.show(Scenes.GAME_OVER)
                 this.show(Scenes.UI)
                 break;
             case States.SPIN:

@@ -1,4 +1,7 @@
 export enum Texts {
-    STARTING_BALANCE = "starting_balance",
-    START_BUTTON = "start_button"
+    START_TITLE = "START_TITLE",
+    START_BUTTON = "START_BUTTON",
+    GAME_OVER_TITLE = "GAME_OVER_TITLE",
+    GAME_OVER_TEXT = "GAME_OVER_TEXT",
+    GAME_OVER_BUTTON = "GAME_OVER_BUTTON",
 }
