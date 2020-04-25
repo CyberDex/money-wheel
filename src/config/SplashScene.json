@@ -1,0 +1,8 @@
+{
+    "minCoins": 10,
+    "maxCoins": 1000,
+    "slider": {
+        "w": 300,
+        "h": 30
+    }
+}
