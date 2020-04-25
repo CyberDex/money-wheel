@@ -6,7 +6,7 @@ new class Game extends App {
     private sceneController: SceneController
 
     constructor() {
-        super()
+        super({ antialias: true })
         this.sceneController = new SceneController(this)
         this.sceneController.show(Scenes.SPLASH)
         this.resizeHandler()
