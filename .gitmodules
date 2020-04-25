@@ -1,0 +1,3 @@
+[submodule "submodules/webpack"]
+	path = submodules/webpack
+	url = https://github.com/CyberDex/webpack-typescript-boilerplate.git

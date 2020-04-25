@@ -1,5 +1,12 @@
 {
     "compilerOptions": {
+        "baseUrl": "./src",
+        "paths": {
+            "@*": [
+                "*",
+                "../submodules/*"
+            ]
+        },
         "module": "commonjs",
         "target": "ES6",
         "sourceMap": true,
