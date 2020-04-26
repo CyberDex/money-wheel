@@ -6,6 +6,7 @@ import { GameOverScene } from 'scenes/GameOverScene'
 import { store } from 'redux/store'
 import { Scenes } from 'helpers/enums/Scenes'
 import { States } from 'helpers/enums/States'
+import { Actions } from '../helpers/enums/Actions';
 
 export class SceneController extends SceneManager {
 
@@ -28,13 +29,16 @@ export class SceneController extends SceneManager {
                 break
             case States.BETTING:
                 this.hideScene(Scenes.SPLASH)
-                this.showScene(Scenes.GAME)
+                // this.showScene(Scenes.GAME)
                 this.showScene(Scenes.UI)
                 break
-            case States.GAME_OVER:
-                this.showOnlyScene(Scenes.GAME_OVER)
+            case States.RESULT:
+                if (store.getState().balance === 0) {
+                    store.dispatch({ type: Actions.GAME_OVER })
+                }
                 break
-            default:
+            case States.GAME_OVER:
+                // this.showOnlyScene(Scenes.GAME_OVER)
                 break
         }
     }

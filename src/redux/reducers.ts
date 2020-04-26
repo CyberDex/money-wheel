@@ -5,7 +5,8 @@ import { States } from 'helpers/enums/States'
 const initialState: IAppState = {
     state: States.INIT,
     result: undefined,
-    balance: 0
+    balance: 0,
+    bets: {}
 }
 
 export function mainReducer(state: IAppState = initialState, action: IAction) {
@@ -21,6 +22,24 @@ export function mainReducer(state: IAppState = initialState, action: IAction) {
                 state: States.BETTING,
                 balance: action.val
             }
+        case Actions.BETS_OPEN:
+            return {
+                ...state,
+                state: States.BETTING,
+                result: undefined,
+                bets: {}
+            }
+        case Actions.PLACE_BET:
+            const balance = state.balance - action.val.amount
+            const bets = { ...state.bets }
+            bets[action.val.bet] = bets[action.val.bet]
+                ? bets[action.val.bet] + action.val.amount
+                : action.val.amount
+            return {
+                ...state,
+                balance,
+                bets
+            }
         case Actions.SPIN_START:
             return {
                 ...state,
@@ -30,7 +49,12 @@ export function mainReducer(state: IAppState = initialState, action: IAction) {
             return {
                 ...state,
                 state: States.RESULT,
-                result: action.result
+                result: action.val,
+            }
+        case Actions.GAME_OVER:
+            return {
+                ...state,
+                state: States.GAME_OVER
             }
         default:
             return state

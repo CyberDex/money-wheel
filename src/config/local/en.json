@@ -3,5 +3,7 @@
     "START_BUTTON": "Start",
     "GAME_OVER_TITLE": "Game over",
     "GAME_OVER_TEXT": "You are out of funds",
-    "GAME_OVER_BUTTON": "Restart"
+    "GAME_OVER_BUTTON": "Restart",
+    "BET_BUTTON": "Bet on",
+    "SPIN_BUTTON": "Spin"
 }
