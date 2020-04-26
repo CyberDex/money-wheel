@@ -12,6 +12,7 @@ jobs:
 
     - name: Build
       run: |
+        git submodule update --init
         npm install
         npm run-script build
 
