@@ -1,4 +1,8 @@
-# Prerequisites
+# Money-wheel
+
+![Deploy to GitHub Pages](https://github.com/CyberDex/money-wheel/workflows/Deploy%20to%20GitHub%20Pages/badge.svg)
+
+## Prerequisites
 
 - Create a Money Wheel game
 - Use Typescript and PixiJS 4
