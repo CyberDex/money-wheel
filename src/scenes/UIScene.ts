@@ -1,53 +1,54 @@
-import { View, Button } from 'pixil'
-import { Text } from 'pixi.js'
+import { View, Button, Label } from 'pixil'
 import { store } from '../redux/store'
-import * as lang from '../config/local/en.json'
-import * as styles from '../config/styles.json'
-import * as config from '../config/SplashScene.json'
-import * as gameConf from '../config/game.json'
 import { Texts } from 'helpers/enums/Texts'
 import { placeBet, startSpin } from 'redux/actions'
 import { States } from 'helpers/enums/States'
+import * as style from '../config/styles.json'
+import * as config from '../config/scenes/UIScene.json'
+import * as gameConf from '../config/game.json'
+import { text } from 'helpers/help'
 
 export class UIScene extends View {
-    private balance: Text
+    private balance: Label
     private bets: { [bet: string]: Button } = {}
+    private betsVal: { [bet: string]: Label } = {}
     private spinButton: Button
 
     constructor() {
         super()
-        this.balance = this.addText("0", styles.subTitle)
+        this.balance = new Label("", style.subTitle, config.balance.x, config.balance.y)
+        this.addChild(this.balance)
 
         for (const bet in gameConf.betNumers) {
             this.bets[bet] = this.addButton(
-                lang[Texts.BET_BUTTON] + ' ' + bet,
-                config.button,
-                styles.button,
+                bet,
+                config.betButton,
+                style.button,
                 () => store.dispatch(placeBet(bet, 1))
             )
+            this.betsVal[bet] = new Label("", style.betValue, config.betVal.x, config.betVal.y)
+            this.addChild(this.betsVal[bet])
         }
 
-        this.spinButton = new Button(
-            config.button.widht,
-            config.button.height,
-            lang[Texts.SPIN_BUTTON],
-            styles.button,
-            Number(config.button.color),
-            config.button.radius
+        this.spinButton = this.addButton(
+            text(Texts.SPIN_BUTTON),
+            config.spinButton,
+            style.button,
+            () => store.dispatch(startSpin())
         )
         this.addChild(this.spinButton)
-        this.spinButton.onClick(() => store.dispatch(startSpin()))
 
         store.subscribe(() => this.stateChange())
     }
 
-    private addButton(text: string, conf = config.button, styles, onClick) {
+    private addButton(text: string, conf: any = config.betButton, styles, onClick) {
         const button = new Button(
+            conf.x,
+            conf.y,
             conf.widht,
             conf.height,
             text,
             styles,
-            Number(conf.color),
             conf.radius
         )
         this.addChild(button)
@@ -61,8 +62,18 @@ export class UIScene extends View {
                 for (const bet in gameConf.betNumers) {
                     this.bets[bet].active = store.getState().balance > 0
                 }
-                this.balance.text = store.getState().balance
+                this.balance.text = text(Texts.BALANCE) + ': ' + store.getState().balance
                 this.spinButton.active = Object.keys(store.getState().bets).length > 0
+                const bets = store.getState().bets
+                if (Object.keys(bets).length) {
+                    for (const bet in bets) {
+                        this.betsVal[bet].text = bets[bet] ? bets[bet] : ""
+                    }
+                } else {
+                    for (const bet in this.betsVal) {
+                        this.betsVal[bet].text = ""
+                    }
+                }
                 break
             case States.SPIN:
                 this.spinButton.active = false
@@ -74,21 +85,17 @@ export class UIScene extends View {
         }
     }
 
-    public resize(w, h: number) {
-        this.balance.x = w * .5
-        this.balance.y = h * .4
-
-        const betsCount = Object.keys(gameConf.betNumers).length - 1
-        const margin = 10
-        const betsPanelWidth = betsCount * config.button.widht + betsCount * margin
-        let x = (w - betsPanelWidth) / 2
+    public onResize(w, h: number) {
+        super.onResize(w, h)
+        let x = w / 100 * config.betButton.x
         for (const bet in gameConf.betNumers) {
-            this.bets[bet].y = h * .5
             this.bets[bet].x = x
-            x += config.button.widht + margin
-        }
+            this.bets[bet].y = h / 100 * config.betButton.y
 
-        this.spinButton.x = w / 2
-        this.spinButton.y = h * .7
+            this.betsVal[bet].x = x + config.betButton.widht / 2
+            this.betsVal[bet].y = h / 100 * config.betVal.y
+
+            x += config.betButton.widht + config.betButton.margin
+        }
     }
 }

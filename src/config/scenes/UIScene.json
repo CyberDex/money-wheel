@@ -1,0 +1,25 @@
+{
+    "balance": {
+        "x": 85,
+        "y": 5
+    },
+    "betVal": {
+        "x": 20,
+        "y": 85
+    },
+    "spinButton": {
+        "x": 85,
+        "y": 90,
+        "widht": 150,
+        "height": 70,
+        "radius": 35
+    },
+    "betButton": {
+        "x": 10,
+        "y": 90,
+        "widht": 50,
+        "height": 50,
+        "radius": 25,
+        "margin": 10
+    }
+}

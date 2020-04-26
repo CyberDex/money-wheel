@@ -1,44 +1,32 @@
-import { View, Button } from 'pixil'
-import { Text } from 'pixi.js'
+import { View, Button, Label } from 'pixil'
 import { Texts } from 'helpers/enums/Texts'
-import * as lang from '../config/local/en.json'
-import * as styles from '../config/styles.json'
-import * as config from '../config/SplashScene.json'
+import * as style from '../config/styles.json'
+import * as config from '../config/scenes/PopupScene.json'
 import { store } from '../redux/store'
 import { Actions } from '../helpers/enums/Actions';
+import { text } from 'helpers/help'
 
 export class GameOverScene extends View {
-    private text: Text
-    private balance: Text
-    private startButton: Button
+    private description: Label
+    private restartButton: Button
 
     constructor() {
         super()
-        this.text = this.addText(lang[Texts.GAME_OVER_TITLE], styles.title)
-        this.balance = this.addText(lang[Texts.GAME_OVER_TEXT], styles.subTitle)
+        this.addChild(new Label(text(Texts.GAME_OVER_TITLE), style.title, config.title.x, config.title.y))
+        this.addChild(new Label(text(Texts.GAME_OVER_TEXT), style.subTitle, config.subtitle.x, config.subtitle.y))
 
-        this.startButton = new Button(
+        this.restartButton = new Button(
+            config.button.x,
+            config.button.y,
             config.button.widht,
             config.button.height,
-            lang[Texts.GAME_OVER_BUTTON],
-            styles.button,
-            Number(config.button.color),
+            text(Texts.GAME_OVER_BUTTON),
+            style.button,
             config.button.radius
         )
-        this.addChild(this.startButton)
-        this.startButton.onClick(() => {
+        this.addChild(this.restartButton)
+        this.restartButton.onClick(() => {
             store.dispatch({ type: Actions.INIT })
         })
-    }
-
-    public resize(w, h: number) {
-        this.text.x = w * .5
-        this.text.y = h * .4
-
-        this.balance.x = w * .5
-        this.balance.y = h * .5
-
-        this.startButton.x = w / 2
-        this.startButton.y = h * .7
     }
 }

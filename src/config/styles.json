@@ -19,5 +19,10 @@
         "fontSize": 24,
         "fontWeight": "bold",
         "fill": "#ffffff"
+    },
+    "betValue": {
+        "fontFamily": "Arial",
+        "fontSize": 18,
+        "fill": "#ffffff"
     }
 }

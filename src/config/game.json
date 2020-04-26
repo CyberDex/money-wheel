@@ -1,4 +1,6 @@
 {
+    "minStartBalance": 10,
+    "maxStartBalance": 100,
     "spinTime": 1,
     "resultRevealTime": 1,
     "betNumers": {

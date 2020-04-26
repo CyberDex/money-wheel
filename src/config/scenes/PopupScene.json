@@ -1,0 +1,23 @@
+{
+    "title": {
+        "x": 50,
+        "y": 25
+    },
+    "subtitle": {
+        "x": 50,
+        "y": 40
+    },
+    "slider": {
+        "x": 50,
+        "y": 50,
+        "widht": 300,
+        "heighth": 30
+    },
+    "button": {
+        "x": 50,
+        "y": 70,
+        "widht": 150,
+        "height": 70,
+        "radius": 35
+    }
+}

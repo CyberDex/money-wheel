@@ -1,52 +1,46 @@
-import { View, Slider, Button } from 'pixil'
-import { Text, TextStyle } from 'pixi.js'
+import { View, Slider, Button, Label } from 'pixil'
 import { Texts } from 'helpers/enums/Texts'
-import * as lang from '../config/local/en.json'
-import * as styles from '../config/styles.json'
-import * as config from '../config/SplashScene.json'
+import { text } from '../helpers/help'
 import { store } from '../redux/store'
 import { startGame } from 'redux/actions'
+import * as style from '../config/styles.json'
+import * as config from '../config/scenes/PopupScene.json'
+import * as gameConf from '../config/game.json'
+
 
 export class SplashScene extends View {
-    private text: Text
-    private balance: Text
+    private balance: Label
     private slider: Slider
     private startButton: Button
 
     constructor() {
         super()
-        this.text = this.addText(lang[Texts.START_TITLE], styles.title as TextStyle)
-        this.balance = this.addText(String(config.minCoins), styles.subTitle as TextStyle)
+        this.addChild(new Label(text(Texts.START_TITLE), style.title, config.title.x, config.title.y))
+        this.balance = new Label(gameConf.minStartBalance, style.subTitle, config.subtitle.x, config.subtitle.y)
+        this.addChild(this.balance)
 
-        this.slider = new Slider(config.slider.w, config.slider.h, config.minCoins, config.maxCoins)
+        this.slider = new Slider(
+            config.slider.x,
+            config.slider.y,
+            config.slider.widht,
+            config.slider.heighth,
+            gameConf.minStartBalance,
+            gameConf.maxStartBalance)
         this.slider.onChange(value => this.balance.text = String(value))
         this.addChild(this.slider)
 
         this.startButton = new Button(
+            config.button.x,
+            config.button.y,
             config.button.widht,
             config.button.height,
-            lang[Texts.START_BUTTON],
-            styles.button,
-            Number(config.button.color),
+            text(Texts.START_BUTTON),
+            style.button,
             config.button.radius
         )
         this.addChild(this.startButton)
         this.startButton.onClick(() => {
             store.dispatch(startGame(this.slider.value))
         })
-    }
-
-    public resize(w, h: number) {
-        this.text.x = w * .5
-        this.text.y = h * .25
-
-        this.balance.x = w * .5
-        this.balance.y = h * .4
-
-        this.slider.x = w / 2 - config.slider.w / 2
-        this.slider.y = h * .5
-
-        this.startButton.x = w / 2
-        this.startButton.y = h * .7
     }
 }
