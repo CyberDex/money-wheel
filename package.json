@@ -32,7 +32,6 @@
 		"webpack-typescript-boilerplate": "^1.1.0"
 	},
 	"dependencies": {
-		"gsap": "^3.2.6",
 		"pixi.js": "^4.8.9",
 		"redux": "^4.0.5",
 		"redux-thunk": "^2.3.0"

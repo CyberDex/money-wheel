@@ -1,8 +1,7 @@
-import { View, App } from 'Pixil/index'
+import { View, App } from 'pixil/index'
 import { SplashScene } from 'scenes/SplashScene'
 import { GameScene } from 'scenes/GameScene'
 import { UIScene } from 'scenes/UIScene'
-import { gsap } from "gsap"
 import { store } from 'redux/store'
 import { GameOverScene } from 'scenes/GameOverScene'
 import { Scenes } from 'helpers/enums/Scenes'
@@ -49,20 +48,10 @@ export class SceneController {
 
     public show(scene: Scenes) {
         this.scenes[scene].visible = true
-        gsap.to(this.scenes[scene], {
-            alpha: 1,
-            duration: .3
-        })
     }
 
     public hide(scene: Scenes) {
-        gsap.to(this.scenes[scene], {
-            alpha: 0,
-            duration: .3,
-            onComplete: () => {
-                this.scenes[scene].visible = false
-            }
-        })
+        this.scenes[scene].visible = false
     }
 
     public resize(w, h: number) {
