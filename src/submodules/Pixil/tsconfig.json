@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "ES6",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "strict": false,
+        "resolveJsonModule": true,
+        "declaration": true,
+        "outDir": "./dist"
+    },
+    "include": [
+        "src/**/*"
+    ]
+}
