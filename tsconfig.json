@@ -2,14 +2,8 @@
     "compilerOptions": {
         "baseUrl": "src",
         "paths": {
-            "Pixil/*": [
-                "submodules/Pixil/src/*"
-            ],
-            "enums/*": [
-                "helpers/enum/*"
-            ],
-            "interfaces/*": [
-                "helpers/interfaces/*"
+            "pixil/*": [
+                "submodules/pixil/src/*"
             ]
         },
         "module": "commonjs",
