@@ -3,4 +3,5 @@ export enum States {
     BETTING = "BETTING",
     SPIN = "SPIN",
     RESULT = "RESULT",
+    GAME_OVER = "GAME_OVER",
 }
