@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
-        "baseUrl": "./src",
+        "baseUrl": "src",
         "paths": {
-            "Pixil": [
-                "../submodules/Pixil"
+            "pixil/*": [
+                "submodules/pixil/src/*"
             ]
         },
         "module": "commonjs",
@@ -13,9 +13,6 @@
         "strict": false,
         "resolveJsonModule": true
     },
-    "include": [
-        "src/**/*"
-    ],
     "exclude": [
         "node_modules"
     ]

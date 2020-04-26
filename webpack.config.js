@@ -1,5 +1,5 @@
 
-const webpackConfig = require('./submodules/webpack')
+const webpackConfig = require('webpack-typescript-boilerplate')
 
 module.exports = webpackConfig({
     entryPoints: {

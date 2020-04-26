@@ -1,12 +1,12 @@
-import { View, App } from 'Pixil'
-import { SplashScene } from '../scenes/SplashScene'
-import { GameScene } from '../scenes/GameScene'
-import { UIScene } from '../scenes/UIScene'
-import { Scenes } from '../helpers/enums/Scenes'
+import { View, App } from 'Pixil/index'
+import { SplashScene } from 'scenes/SplashScene'
+import { GameScene } from 'scenes/GameScene'
+import { UIScene } from 'scenes/UIScene'
 import { gsap } from "gsap"
-import { States } from '../helpers/enums/States'
 import { store } from 'redux/store'
 import { GameOverScene } from 'scenes/GameOverScene'
+import { Scenes } from 'helpers/enums/Scenes'
+import { States } from 'helpers/enums/States'
 
 export class SceneController {
     private scenes: {
