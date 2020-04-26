@@ -1,4 +1,4 @@
-import { View, App } from 'pixil/index'
+import { View, App } from 'pixil'
 import { SplashScene } from 'scenes/SplashScene'
 import { GameScene } from 'scenes/GameScene'
 import { UIScene } from 'scenes/UIScene'

@@ -1,4 +1,4 @@
-import { App } from 'pixil/index'
+import { App } from 'pixil'
 import { SceneController } from 'controllers/SceneController'
 import { Scenes } from 'helpers/enums/Scenes'
 

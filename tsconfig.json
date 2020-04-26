@@ -2,8 +2,8 @@
     "compilerOptions": {
         "baseUrl": "src",
         "paths": {
-            "pixil/*": [
-                "submodules/pixil/src/*"
+            "pixil": [
+                "submodules/pixil/src/index"
             ]
         },
         "module": "commonjs",
