@@ -20,7 +20,9 @@ export function mainReducer(state: IAppState = initialState, action: IAction) {
             return {
                 ...state,
                 state: States.BETTING,
-                balance: action.val
+                balance: action.val,
+                result: undefined,
+                bets: {}
             }
         case Actions.BETS_OPEN:
             return {
@@ -30,15 +32,10 @@ export function mainReducer(state: IAppState = initialState, action: IAction) {
                 bets: {}
             }
         case Actions.PLACE_BET:
-            const balance = state.balance - action.val.amount
-            const bets = { ...state.bets }
-            bets[action.val.bet] = bets[action.val.bet]
-                ? bets[action.val.bet] + action.val.amount
-                : action.val.amount
             return {
                 ...state,
-                balance,
-                bets
+                balance: action.val.balance,
+                bets: action.val.bets
             }
         case Actions.SPIN_START:
             return {

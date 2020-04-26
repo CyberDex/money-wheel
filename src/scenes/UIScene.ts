@@ -4,7 +4,7 @@ import { store } from '../redux/store'
 import * as lang from '../config/local/en.json'
 import * as styles from '../config/styles.json'
 import * as config from '../config/SplashScene.json'
-import * as betNumers from '../config/bets.json'
+import * as gameConf from '../config/game.json'
 import { Texts } from 'helpers/enums/Texts'
 import { placeBet, startSpin } from 'redux/actions'
 import { States } from 'helpers/enums/States'
@@ -18,7 +18,7 @@ export class UIScene extends View {
         super()
         this.balance = this.addText("0", styles.subTitle)
 
-        for (const bet in betNumers) {
+        for (const bet in gameConf.betNumers) {
             this.bets[bet] = this.addButton(
                 lang[Texts.BET_BUTTON] + ' ' + bet,
                 config.button,
@@ -58,10 +58,18 @@ export class UIScene extends View {
     private stateChange() {
         switch (store.getState().state) {
             case States.BETTING:
-                for (const bet in betNumers) {
+                for (const bet in gameConf.betNumers) {
                     this.bets[bet].active = store.getState().balance > 0
                 }
                 this.balance.text = store.getState().balance
+                this.spinButton.active = Object.keys(store.getState().bets).length > 0
+                break
+            case States.SPIN:
+                this.spinButton.active = false
+                for (const bet in gameConf.betNumers) {
+                    this.bets[bet].active = false
+                }
+                this.spinButton.active = false
                 break
         }
     }
@@ -70,11 +78,11 @@ export class UIScene extends View {
         this.balance.x = w * .5
         this.balance.y = h * .4
 
-        const betsCount = Object.keys(betNumers).length - 1
+        const betsCount = Object.keys(gameConf.betNumers).length - 1
         const margin = 10
         const betsPanelWidth = betsCount * config.button.widht + betsCount * margin
         let x = (w - betsPanelWidth) / 2
-        for (const bet in betNumers) {
+        for (const bet in gameConf.betNumers) {
             this.bets[bet].y = h * .5
             this.bets[bet].x = x
             x += config.button.widht + margin

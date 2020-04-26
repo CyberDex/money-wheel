@@ -1,0 +1,15 @@
+{
+    "spinTime": 1,
+    "resultRevealTime": 1,
+    "betNumers": {
+        "1": 10,
+        "3": 5,
+        "5": 3,
+        "10": 2,
+        "50": 1
+    },
+    "multiplyers": {
+        "x2": 2,
+        "x5": 5
+    }
+}

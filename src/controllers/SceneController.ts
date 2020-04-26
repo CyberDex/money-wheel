@@ -29,16 +29,13 @@ export class SceneController extends SceneManager {
                 break
             case States.BETTING:
                 this.hideScene(Scenes.SPLASH)
-                // this.showScene(Scenes.GAME)
+                this.showScene(Scenes.GAME)
                 this.showScene(Scenes.UI)
                 break
             case States.RESULT:
-                if (store.getState().balance === 0) {
-                    store.dispatch({ type: Actions.GAME_OVER })
-                }
                 break
             case States.GAME_OVER:
-                // this.showOnlyScene(Scenes.GAME_OVER)
+                this.showOnlyScene(Scenes.GAME_OVER)
                 break
         }
     }
