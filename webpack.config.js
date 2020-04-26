@@ -1,5 +1,5 @@
 
-const webpackConfig = require('./submodules/webpack')
+const webpackConfig = require('./src/submodules/webpack')
 
 module.exports = webpackConfig({
     entryPoints: {

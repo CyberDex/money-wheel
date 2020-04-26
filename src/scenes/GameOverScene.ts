@@ -1,4 +1,4 @@
-import { View, Button } from 'Pixil'
+import { View, Button } from 'Pixil/index'
 import { Text } from 'pixi.js'
 import { Texts } from 'helpers/enums/Texts'
 import * as lang from '../config/local/en.json'

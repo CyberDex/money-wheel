@@ -1,6 +1,6 @@
-[submodule "submodules/webpack"]
-	path = submodules/webpack
+[submodule "src/submodules/webpack"]
+	path = src/submodules/webpack
 	url = https://github.com/CyberDex/webpack-typescript-boilerplate.git
-[submodule "submodules/Pixil"]
-	path = submodules/Pixil
+[submodule "src/submodules/Pixil"]
+	path = src/submodules/Pixil
 	url = https://github.com/CyberDex/pixil.git
