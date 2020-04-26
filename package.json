@@ -5,7 +5,10 @@
 		"build": "cross-env NODE_ENV=production webpack"
 	},
 	"repository": "https://github.com/CyberDex/money-wheel",
+	"homepage": "https://cyberdex.github.io/money-wheel/",
+	"version": "0.0.1",
 	"license": "MIT",
+	"private": true,
 	"devDependencies": {
 		"@babel/core": "^7.4.5",
 		"@babel/preset-env": "^7.4.5",
