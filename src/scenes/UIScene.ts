@@ -10,16 +10,22 @@ import { text } from 'helpers/help'
 
 export class UIScene extends View {
     private balance: Label
+    private winAmount: Label
+    private winNumber: Label
     private bets: { [bet: string]: Button } = {}
     private betsVal: { [bet: string]: Label } = {}
     private spinButton: Button
 
     constructor() {
         super()
-        this.balance = new Label("", style.subTitle, config.balance.x, config.balance.y)
+        this.balance = new Label("", style.label, config.balance.x, config.balance.y)
+        this.winAmount = new Label("", style.label, config.winAmount.x, config.winAmount.y)
+        this.winNumber = new Label("", style.label, config.winNumber.x, config.winNumber.y)
         this.addChild(this.balance)
+        this.addChild(this.winAmount)
+        this.addChild(this.winNumber)
 
-        for (const bet in gameConf.betNumers) {
+        for (const bet in gameConf.bets) {
             this.bets[bet] = this.addButton(
                 bet,
                 config.betButton,
@@ -59,7 +65,7 @@ export class UIScene extends View {
     private stateChange() {
         switch (store.getState().state) {
             case States.BETTING:
-                for (const bet in gameConf.betNumers) {
+                for (const bet in gameConf.bets) {
                     this.bets[bet].active = store.getState().balance > 0
                 }
                 this.balance.text = text(Texts.BALANCE) + ': ' + store.getState().balance
@@ -76,11 +82,21 @@ export class UIScene extends View {
                 }
                 break
             case States.SPIN:
+                this.winAmount.text = ""
                 this.spinButton.active = false
-                for (const bet in gameConf.betNumers) {
+                for (const bet in gameConf.bets) {
                     this.bets[bet].active = false
                 }
                 this.spinButton.active = false
+                break
+            case States.RESULT:
+                if (store.getState().winNumber) {
+                    const state = store.getState()
+                    this.winNumber.text = text(Texts.WIN_NUMBER) + ': ' + state.winNumber
+                    if (store.getState().winAmount) {
+                        this.winAmount.text = `${text(Texts.WIN_AMOUNT)}: ${state.bets[state.winNumber]} X ${state.winNumber} = ${state.winAmount}`
+                    }
+                }
                 break
         }
     }
@@ -88,7 +104,7 @@ export class UIScene extends View {
     public onResize(w, h: number) {
         super.onResize(w, h)
         let x = w / 100 * config.betButton.x
-        for (const bet in gameConf.betNumers) {
+        for (const bet in gameConf.bets) {
             this.bets[bet].x = x
             this.bets[bet].y = h / 100 * config.betButton.y
 

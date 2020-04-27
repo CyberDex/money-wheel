@@ -5,5 +5,7 @@
     "GAME_OVER_TEXT": "You are out of funds",
     "GAME_OVER_BUTTON": "Restart",
     "SPIN_BUTTON": "Spin",
-    "BALANCE": "Balance"
+    "BALANCE": "Balance",
+    "WIN_NUMBER": "Win number",
+    "WIN_AMOUNT": "Win"
 }

@@ -14,6 +14,11 @@
         "fontWeight": "bold",
         "fill": "#ffffff"
     },
+    "label": {
+        "fontFamily": "Arial",
+        "fontSize": 16,
+        "fill": "#ffffff"
+    },
     "button": {
         "fontFamily": "Arial",
         "fontSize": 24,

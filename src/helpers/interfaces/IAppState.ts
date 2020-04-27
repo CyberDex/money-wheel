@@ -3,7 +3,8 @@ import { States } from '../enums/States'
 
 export interface IAppState {
     state?: States
-    result?: number
+    winNumber?: number
+    winAmount?: number
     balance?: number
     bets?: {
         [key: string]: number

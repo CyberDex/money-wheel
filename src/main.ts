@@ -17,10 +17,10 @@ new class Game extends App {
         this.scenes.add(Scenes.GAME, new GameScene())
         this.scenes.add(Scenes.GAME_OVER, new GameOverScene())
 
-        store.subscribe(() => this.stateChange())
+        store.subscribe(() => this.switchScene())
     }
 
-    private stateChange() {
+    private switchScene() {
         switch (store.getState().state) {
             case States.INIT:
                 this.scenes.showOnly(Scenes.SPLASH)

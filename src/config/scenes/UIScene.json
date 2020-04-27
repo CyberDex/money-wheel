@@ -1,6 +1,14 @@
 {
     "balance": {
-        "x": 85,
+        "x": 90,
+        "y": 5
+    },
+    "winNumber": {
+        "x": 15,
+        "y": 5
+    },
+    "winAmount": {
+        "x": 50,
         "y": 5
     },
     "betVal": {
