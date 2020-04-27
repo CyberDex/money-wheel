@@ -12,6 +12,7 @@ export function startSpin(): IAction {
 
 export function resultLoaded(winNumber: number): IAction {
     const bets = store.getState().bets
+    const winMultiplyer = gameConf.multipliers[winNumber] ? gameConf.multipliers[winNumber] : 1
     const winAmount = bets[winNumber] ? bets[winNumber] * winNumber : 0
     const balance = store.getState().balance + (winAmount ? (Number(bets[winNumber]) + Number(winAmount)) : 0)
 
@@ -24,6 +25,7 @@ export function resultLoaded(winNumber: number): IAction {
         val: {
             winNumber,
             winAmount,
+            winMultiplyer,
             balance
         }
     }
@@ -52,6 +54,11 @@ function getResult() {
     const wheel = []
     for (const num in gameConf.bets) {
         for (let i = 0; i < gameConf.bets[num]; i++) {
+            wheel.push(num)
+        }
+    }
+    for (const num in gameConf.multipliers) {
+        for (let i = 0; i < gameConf.multipliers[num]; i++) {
             wheel.push(num)
         }
     }
