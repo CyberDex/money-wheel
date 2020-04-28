@@ -1,10 +1,11 @@
 import { Actions } from '../helpers/enums/Actions'
+import { wheelGenerator } from '../helpers/wheelGenerator'
 import { IAction } from '../helpers/interfaces/IAppState';
 import { store } from './store'
 import * as gameConf from '../config/game.json'
 
 export function startSpin(): IAction {
-    setTimeout(() => store.dispatch(resultLoaded(getResult())), gameConf.spinTime * 1000)
+    getResult().then(result => store.dispatch(resultLoaded(result)))
     return {
         type: Actions.SPIN_START,
     }
@@ -50,18 +51,40 @@ export function placeBet(bet: string, amount: number): IAction {
     }
 }
 
-function getResult() {
-    const wheel = []
-    for (const num in gameConf.bets) {
-        for (let i = 0; i < gameConf.bets[num]; i++) {
-            wheel.push(num)
-        }
-    }
-    for (const num in gameConf.multipliers) {
-        for (let i = 0; i < gameConf.multipliers[num]; i++) {
-            wheel.push(num)
-        }
-    }
-    const result = wheel[Math.floor(Math.random() * wheel.length)]
-    return result
+async function postData(url = '', data = {}) {
+    const response = await fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify(data)
+    });
+    return response.json()
+}
+
+async function getResult() {
+    const wheel = wheelGenerator(gameConf.bets, gameConf.multipliers)
+
+    const responce = await postData('https://api.random.org/json-rpc/2/invoke', {
+        "jsonrpc": "2.0",
+        "method": "generateIntegers",
+        "params": {
+            "apiKey": "2bf06986-9294-493e-8bc8-bace9a2e16c2",
+            "n": 1,
+            "min": 0,
+            "max": wheel.length - 1,
+            "replacement": true,
+            "base": 10
+        },
+        "id": 21012
+    })
+    const wheelField = responce.result.random.data[0]
+    const winNumber = wheel[wheelField]
+
+    return wheel[winNumber]
 }
