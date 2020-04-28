@@ -1,8 +1,27 @@
 import { Actions } from '../helpers/enums/Actions'
 import { IAction } from '../helpers/interfaces/IAppState';
 import { store } from './store'
-import * as gameConf from '../config/game.json'
 import { API } from 'api/API';
+import * as gameConf from '../config/game.json'
+
+export function startGame(val: number): IAction {
+    return {
+        type: Actions.START_GAME,
+        val
+    }
+}
+
+export function placeBet(bet: string, amount: number): IAction {
+    const balance = store.getState().balance - amount
+    const bets = { ...store.getState().bets }
+    bets[bet] = bets[bet]
+        ? bets[bet] + amount
+        : amount
+    return {
+        type: Actions.PLACE_BET,
+        val: { balance, bets }
+    }
+}
 
 export function startSpin(): IAction {
     API.getResult().then(result => store.dispatch(resultLoaded(result)))
@@ -29,24 +48,5 @@ export function resultLoaded(winNumber: number): IAction {
             winMultiplyer,
             balance
         }
-    }
-}
-
-export function startGame(val: number): IAction {
-    return {
-        type: Actions.START_GAME,
-        val
-    }
-}
-
-export function placeBet(bet: string, amount: number): IAction {
-    const balance = store.getState().balance - amount
-    const bets = { ...store.getState().bets }
-    bets[bet] = bets[bet]
-        ? bets[bet] + amount
-        : amount
-    return {
-        type: Actions.PLACE_BET,
-        val: { balance, bets }
     }
 }
