@@ -1,6 +1,5 @@
 import { View } from 'pixil'
 import { Graphics, Text } from 'pixi.js'
-import { wheelGenerator } from 'helpers/wheelGenerator'
 import * as gameConf from '../config/game.json'
 
 export class Wheel extends View {
@@ -28,7 +27,9 @@ export class Wheel extends View {
         this.center = this.addCircle(0, 0, radius * 0.05, fgColor)
         this.addChild(this.center)
 
-        this.wheelNumbers = wheelGenerator(gameConf.bets, gameConf.multipliers)
+        this.wheelNumbers = gameConf.wheel
+
+        // console.log(this.wheelNumbers);
 
         const sectorSize = 360 / this.wheelNumbers.length
         let angle = 0

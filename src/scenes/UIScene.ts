@@ -93,9 +93,16 @@ export class UIScene extends View {
             case States.RESULT:
                 if (store.getState().winNumber) {
                     const state = store.getState()
-                    this.winNumber.text = text(Texts.WIN_NUMBER) + ': ' + state.winNumber
-                    if (store.getState().winAmount) {
-                        this.winAmount.text = `${text(Texts.WIN_AMOUNT)}: ${state.bets[state.winNumber]} X ${state.winNumber} = ${state.winAmount}`
+                    if (state.winNumber === 'X2') {
+                        this.winNumber.text = text(Texts.MULTIPLY) + " 2 !!!"
+                        if (store.getState().winAmount) {
+                            this.winAmount.text = `${text(Texts.WIN_AMOUNT)}: ${state.winAmount / 2} X 2 = ${state.winAmount}`
+                        }
+                    } else {
+                        this.winNumber.text = text(Texts.WIN_NUMBER) + ': ' + state.winNumber
+                        if (store.getState().winAmount) {
+                            this.winAmount.text = `${text(Texts.WIN_AMOUNT)}: ${state.bets[state.winNumber]} X ${state.winNumber} = ${state.winAmount}`
+                        }
                     }
                 }
                 break

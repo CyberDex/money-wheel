@@ -11,4 +11,5 @@ export enum Texts {
     BET_BUTTON = "BET_BUTTON",
     SPIN_BUTTON = "SPIN_BUTTON",
     WIN_AMOUNT = "WIN_AMOUNT",
+    MULTIPLY = "MULTIPLY",
 }

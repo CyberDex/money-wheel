@@ -24,28 +24,39 @@ export function placeBet(bet: string, amount: number): IAction {
 }
 
 export function startSpin(): IAction {
-    API.getResult().then(result => store.dispatch(resultLoaded(result)))
+    API.getResult().then((result: string) => store.dispatch(resultLoaded(result)))
     return {
         type: Actions.SPIN_START,
     }
 }
 
-export function resultLoaded(winNumber: number): IAction {
+export function resultLoaded(winNumber: string): IAction {
     const bets = store.getState().bets
-    const winMultiplyer = gameConf.multipliers[winNumber] ? gameConf.multipliers[winNumber] : 1
-    const winAmount = bets[winNumber] ? bets[winNumber] * winNumber : 0
-    const balance = store.getState().balance + (winAmount ? (Number(bets[winNumber]) + Number(winAmount)) : 0)
+    let balance = store.getState().balance
+    let winAmount = 0
+    if (winNumber === 'X2') {
+        let allBets = 0
+        for (const bet in bets) {
+            allBets += bets[bet]
+        }
+        winAmount = allBets * 2
+        balance += winAmount + allBets
+    } else if (bets[winNumber]) {
+        winAmount = bets[winNumber] ? bets[winNumber] * Number(winNumber) : 0
+        balance += Number(winAmount) + Number(bets[winNumber])
+    }
 
-    setTimeout(() => store.dispatch({
-        type: balance > 0 ? Actions.BETS_OPEN : Actions.GAME_OVER
-    }), gameConf.resultRevealTime * 1000)
+    // console.log(winNumber, bets[winNumber], bets);
+
+    balance > 0
+        ? setTimeout(() => store.dispatch({ type: Actions.BETS_OPEN }), gameConf.resultRevealTime * 1000)
+        : setTimeout(() => store.dispatch({ type: Actions.GAME_OVER }), gameConf.resultRevealTime * 5000)
 
     return {
         type: Actions.RESULT_LOADED,
         val: {
             winNumber,
             winAmount,
-            winMultiplyer,
             balance
         }
     }
