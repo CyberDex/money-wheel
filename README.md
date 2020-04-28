@@ -42,7 +42,8 @@ In case balance dropped to zero, Game Over popup is displayed
 
 Install dependencies
 ```
-npm i
+git clone https://github.com/CyberDex/money-wheel.git
+git submodule update --init && npm i
 ```
 
 #### Local build
