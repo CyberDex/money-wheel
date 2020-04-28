@@ -83,6 +83,7 @@ export class UIScene extends View {
                 break
             case States.SPIN:
                 this.winAmount.text = ""
+                this.winNumber.text = ""
                 this.spinButton.active = false
                 for (const bet in gameConf.bets) {
                     this.bets[bet].active = false
