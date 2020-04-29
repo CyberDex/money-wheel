@@ -90,7 +90,7 @@ export class UIScene extends View {
                 }
                 this.spinButton.active = false
                 break
-            case States.RESULT:
+            case States.RESULT_REVEAL:
                 if (store.getState().winNumber) {
                     const state = store.getState()
                     if (state.winNumber === 'X2') {

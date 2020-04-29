@@ -4,6 +4,8 @@ import { Wheel } from '../components/Wheel'
 import { store } from 'redux/store'
 import { States } from 'helpers/enums/States'
 import * as gameConf from '../config/game.json'
+import { Actions } from '../helpers/enums/Actions'
+import { revealResult } from 'redux/actions'
 
 export class GameScene extends View {
     public wheel: Wheel
@@ -20,7 +22,7 @@ export class GameScene extends View {
             {
                 delay: gameConf.spinTime,
                 animate: {
-                    rotation: 360
+                    rotation: Math.random() > .5 ? -1 : 1
                 }
             }
         )
@@ -36,8 +38,11 @@ export class GameScene extends View {
             case States.SPIN:
                 this.animation.play()
                 break
-            case States.RESULT:
-
+            case States.RESULT_LOADED:
+                setTimeout(() => {
+                    this.animation.stop()
+                    store.dispatch(revealResult())
+                }, gameConf.spinTime * 1000)
                 break
         }
     }

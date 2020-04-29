@@ -45,10 +45,15 @@ export function mainReducer(state: IAppState = initialState, action: IAction) {
         case Actions.RESULT_LOADED:
             return {
                 ...state,
-                state: States.RESULT,
+                state: States.RESULT_LOADED,
                 winNumber: action.val.winNumber,
                 winAmount: action.val.winAmount,
                 balance: action.val.balance
+            }
+        case Actions.RESULT_REVEAL:
+            return {
+                ...state,
+                state: States.RESULT_REVEAL
             }
         case Actions.GAME_OVER:
             return {

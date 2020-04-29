@@ -48,10 +48,6 @@ export function resultLoaded(winNumber: string): IAction {
 
     // console.log(winNumber, bets[winNumber], bets);
 
-    balance > 0
-        ? setTimeout(() => store.dispatch({ type: Actions.BETS_OPEN }), gameConf.resultRevealTime * 1000)
-        : setTimeout(() => store.dispatch({ type: Actions.GAME_OVER }), gameConf.resultRevealTime * 5000)
-
     return {
         type: Actions.RESULT_LOADED,
         val: {
@@ -59,5 +55,14 @@ export function resultLoaded(winNumber: string): IAction {
             winAmount,
             balance
         }
+    }
+}
+
+export function revealResult() {
+    store.getState().balance > 0
+        ? setTimeout(() => store.dispatch({ type: Actions.BETS_OPEN }), gameConf.resultRevealTime * 1000)
+        : setTimeout(() => store.dispatch({ type: Actions.GAME_OVER }), gameConf.resultRevealTime * 5000)
+    return {
+        type: Actions.RESULT_REVEAL
     }
 }
