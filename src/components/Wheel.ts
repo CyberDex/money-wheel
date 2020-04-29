@@ -4,9 +4,8 @@ import * as gameConf from '../config/game.json'
 
 export class Wheel extends View {
     private background: Graphics
-    private center: Graphics
     private wheelNumbers: (number | string)[]
-    private curRadius: number
+
     private size = {
         w: 0,
         h: 0
@@ -23,9 +22,6 @@ export class Wheel extends View {
 
         this.background = this.addCircle(0, 0, radius, bgColor)
         this.addChild(this.background)
-
-        // this.center = this.addCircle(0, -radius, radius * 0.05, fgColor)
-        // this.addChild(this.center)
 
         this.wheelNumbers = gameConf.wheel
 
@@ -56,12 +52,5 @@ export class Wheel extends View {
 
     private degToRad(deg: number): number {
         return (deg * Math.PI) / 180
-    }
-
-    public onResize(w, h: number) {
-        this.size.w = w
-        this.size.h = h
-        super.onResize(w, h)
-        this.curRadius = (w < h ? w : h) / 100 * this.radius
     }
 }
