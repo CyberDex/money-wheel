@@ -32,7 +32,7 @@ export class UIScene extends View {
                 style.button,
                 () => store.dispatch(placeBet(bet, 1))
             )
-            this.betsVal[bet] = new Label("", style.betValue, config.betVal.x, config.betVal.y)
+            this.betsVal[bet] = new Label("", style.label, 0, 0)
             this.addChild(this.betsVal[bet])
         }
 
@@ -116,8 +116,8 @@ export class UIScene extends View {
             this.bets[bet].x = x
             this.bets[bet].y = h / 100 * config.betButton.y
 
-            this.betsVal[bet].x = x + config.betButton.widht / 2
-            this.betsVal[bet].y = h / 100 * config.betVal.y
+            this.betsVal[bet].x = x
+            this.betsVal[bet].y = h - config.betButton.height * 1.65
 
             x += config.betButton.widht + config.betButton.margin
         }

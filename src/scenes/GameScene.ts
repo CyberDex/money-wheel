@@ -32,9 +32,6 @@ export class GameScene extends View {
 
     private stateChange() {
         switch (store.getState().state) {
-            case States.BETTING:
-
-                break
             case States.SPIN:
                 this.animation.play()
                 break

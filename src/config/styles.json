@@ -14,20 +14,15 @@
         "fontWeight": "bold",
         "fill": "#ffffff"
     },
-    "label": {
-        "fontFamily": "Arial",
-        "fontSize": 16,
-        "fill": "#ffffff"
-    },
     "button": {
         "fontFamily": "Arial",
         "fontSize": 24,
         "fontWeight": "bold",
         "fill": "#ffffff"
     },
-    "betValue": {
+    "label": {
         "fontFamily": "Arial",
-        "fontSize": 18,
-        "fill": "#ffffff"
+        "fontSize": 24,
+        "fill": "#000000"
     }
 }

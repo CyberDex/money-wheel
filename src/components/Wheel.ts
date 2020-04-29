@@ -24,8 +24,8 @@ export class Wheel extends View {
         this.background = this.addCircle(0, 0, radius, bgColor)
         this.addChild(this.background)
 
-        this.center = this.addCircle(0, 0, radius * 0.05, fgColor)
-        this.addChild(this.center)
+        // this.center = this.addCircle(0, -radius, radius * 0.05, fgColor)
+        // this.addChild(this.center)
 
         this.wheelNumbers = gameConf.wheel
 
@@ -50,9 +50,7 @@ export class Wheel extends View {
         text.anchor.set(0.5)
         angle = this.degToRad(angle - 90)
 
-        const radius = this.background.width * 2.35
-
-        text.position.set(radius * Math.cos(angle), radius * Math.sin(angle))
+        text.position.set(this.radius * .95 * Math.cos(angle), this.radius * .95 * Math.sin(angle))
         return text
     }
 
@@ -65,7 +63,5 @@ export class Wheel extends View {
         this.size.h = h
         super.onResize(w, h)
         this.curRadius = (w < h ? w : h) / 100 * this.radius
-        this.background.width = this.curRadius
-        this.background.height = this.curRadius
     }
 }
