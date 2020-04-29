@@ -5,7 +5,7 @@ import * as gameConf from '../config/game.json'
 export class Wheel extends View {
     private background: Graphics
     private center: Graphics
-    private wheelNumbers: number[]
+    private wheelNumbers: (number | string)[]
     private curRadius: number
     private size = {
         w: 0,
@@ -40,7 +40,7 @@ export class Wheel extends View {
         })
     }
 
-    private number(num: number, angle: number, color = 0x000000): PIXI.Sprite {
+    private number(num: number | string, angle: number, color = 0x000000): PIXI.Sprite {
         const text = new Text(String(num), {
             fontFamily: "Arial",
             fontSize: 24,
@@ -60,7 +60,7 @@ export class Wheel extends View {
         return (deg * Math.PI) / 180
     }
 
-    onResize(w, h: number) {
+    public onResize(w, h: number) {
         this.size.w = w
         this.size.h = h
         super.onResize(w, h)
