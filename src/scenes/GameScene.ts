@@ -1,11 +1,10 @@
 import { View, Animation } from 'pixil'
-import * as config from '../config/scenes/gameScene.json'
 import { Wheel } from '../components/Wheel'
 import { store } from 'redux/store'
 import { States } from 'helpers/enums/States'
-import * as gameConf from '../config/game.json'
-import { Actions } from '../helpers/enums/Actions'
 import { revealResult } from 'redux/actions'
+import * as config from '../config/scenes/gameScene.json'
+import * as gameConf from '../config/game.json'
 
 export class GameScene extends View {
     public wheel: Wheel
@@ -22,11 +21,11 @@ export class GameScene extends View {
             {
                 delay: gameConf.spinTime,
                 animate: {
-                    rotation: Math.random() > .5 ? -1 : 1
+                    rotation: 1
                 }
             }
         )
-
+        window['wheel'] = this.wheel
         store.subscribe(() => this.stateChange())
     }
 
@@ -38,9 +37,25 @@ export class GameScene extends View {
             case States.RESULT_LOADED:
                 setTimeout(() => {
                     this.animation.stop()
+
+                    const angle = this.radToDeg(this.wheel.rotation)
+                    const sectorSize = 360 / this.wheel.wheelNumbers.length
+                    const wheelField = store.getState().wheelField
+
+                    // TODO: stop the wheel slowly on this angle
+                    this.wheel.rotation = this.degToRad(-wheelField * sectorSize)
+
                     store.dispatch(revealResult())
                 }, gameConf.spinTime * 1000)
                 break
         }
+    }
+
+    private degToRad(deg: number): number {
+        return (deg * Math.PI) / 180
+    }
+
+    private radToDeg(rad: number): number {
+        return rad * 180 * Math.PI
     }
 }

@@ -18,7 +18,7 @@ export const API = new class API {
         return response.json()
     }
 
-    public async getResult() {
+    public async getResult(): Promise<IResult> {
         const responce = await this.postData('https://api.random.org/json-rpc/2/invoke', {
             "jsonrpc": "2.0",
             "method": "generateIntegers",
@@ -36,6 +36,14 @@ export const API = new class API {
         const winNumber = gameConf.wheel[wheelField]
 
         // console.log(`wheel[${wheelField}] = ${winNumber}`, wheel)
-        return winNumber
+        return {
+            wheelField,
+            winNumber
+        }
     }
 }
+
+export interface IResult {
+    wheelField: number,
+    winNumber: number | string
+} 

@@ -4,6 +4,7 @@ import { States } from '../enums/States'
 export interface IAppState {
     state?: States
     winNumber?: number
+    wheelField?: number
     winAmount?: number
     balance?: number
     bets?: {

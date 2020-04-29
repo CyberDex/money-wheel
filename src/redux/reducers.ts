@@ -5,6 +5,7 @@ import { States } from 'helpers/enums/States'
 const initialState: IAppState = {
     state: States.INIT,
     winNumber: undefined,
+    wheelField: undefined,
     winAmount: undefined,
     balance: 0,
     bets: {}
@@ -47,6 +48,7 @@ export function mainReducer(state: IAppState = initialState, action: IAction) {
                 ...state,
                 state: States.RESULT_LOADED,
                 winNumber: action.val.winNumber,
+                wheelField: action.val.wheelField,
                 winAmount: action.val.winAmount,
                 balance: action.val.balance
             }
