@@ -48,15 +48,17 @@ export class UIScene extends View {
     }
 
     private addButton(text: string, conf: any = config.betButton, styles, onClick) {
-        const button = new Button(
-            conf.x,
-            conf.y,
-            conf.widht,
-            conf.height,
+        console.log({
+            ...conf,
             text,
-            styles,
-            conf.radius
-        )
+            styles
+        });
+
+        const button = new Button({
+            ...conf,
+            text,
+            styles
+        })
         this.addChild(button)
         button.onClick(() => onClick())
         return button
@@ -111,15 +113,15 @@ export class UIScene extends View {
 
     public onResize(w, h: number) {
         super.onResize(w, h)
-        let x = w / 100 * config.betButton.x
+        let x = w / 100 * config.betButton.positionX
         for (const bet in gameConf.bets) {
             this.bets[bet].x = x
-            this.bets[bet].y = h / 100 * config.betButton.y
+            this.bets[bet].y = h / 100 * config.betButton.positionY
 
             this.betsVal[bet].x = x
             this.betsVal[bet].y = h - config.betButton.height * 1.65
 
-            x += config.betButton.widht + config.betButton.margin
+            x += config.betButton.width + config.betButton.margin
         }
     }
 }

@@ -12,16 +12,16 @@
         "y": 70
     },
     "spinButton": {
-        "x": 70,
-        "y": 92,
-        "widht": 150,
+        "positionX": 70,
+        "positionY": 92,
+        "width": 150,
         "height": 70,
         "radius": 35
     },
     "betButton": {
-        "x": 25,
-        "y": 92,
-        "widht": 50,
+        "positionX": 25,
+        "positionY": 92,
+        "width": 50,
         "height": 50,
         "radius": 25,
         "margin": 10

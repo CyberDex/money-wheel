@@ -15,15 +15,11 @@ export class GameOverScene extends View {
         this.addChild(new Label(text(Texts.GAME_OVER_TITLE), style.title, config.title.x, config.title.y))
         this.addChild(new Label(text(Texts.GAME_OVER_TEXT), style.subTitle, config.subtitle.x, config.subtitle.y))
 
-        this.restartButton = new Button(
-            config.button.x,
-            config.button.y,
-            config.button.widht,
-            config.button.height,
-            text(Texts.GAME_OVER_BUTTON),
-            style.button,
-            config.button.radius
-        )
+        this.restartButton = new Button({
+            ...config.button,
+            text: text(Texts.GAME_OVER_BUTTON),
+            style: style.button
+        })
         this.addChild(this.restartButton)
         this.restartButton.onClick(() => {
             store.dispatch({ type: Actions.INIT })

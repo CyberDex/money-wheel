@@ -22,22 +22,18 @@ export class SplashScene extends View {
         this.slider = new Slider(
             config.slider.x,
             config.slider.y,
-            config.slider.widht,
-            config.slider.heighth,
+            config.slider.width,
+            config.slider.height,
             gameConf.minStartBalance,
             gameConf.maxStartBalance)
         this.slider.onChange(value => this.balance.text = String(value))
         this.addChild(this.slider)
 
-        this.startButton = new Button(
-            config.button.x,
-            config.button.y,
-            config.button.widht,
-            config.button.height,
-            text(Texts.START_BUTTON),
-            style.button,
-            config.button.radius
-        )
+        this.startButton = new Button({
+            ...config.button,
+            text: text(Texts.START_BUTTON),
+            style: style.button
+        })
         this.addChild(this.startButton)
         this.startButton.onClick(() => {
             store.dispatch(startGame(this.slider.value))

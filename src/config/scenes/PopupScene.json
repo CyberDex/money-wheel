@@ -10,13 +10,13 @@
     "slider": {
         "x": 50,
         "y": 50,
-        "widht": 300,
-        "heighth": 30
+        "width": 300,
+        "height": 30
     },
     "button": {
-        "x": 50,
-        "y": 70,
-        "widht": 150,
+        "positionX": 50,
+        "positionY": 70,
+        "width": 250,
         "height": 70,
         "radius": 35
     }
