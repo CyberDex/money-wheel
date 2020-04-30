@@ -48,12 +48,6 @@ export class UIScene extends View {
     }
 
     private addButton(text: string, conf: any = config.betButton, styles, onClick) {
-        console.log({
-            ...conf,
-            text,
-            styles
-        });
-
         const button = new Button({
             ...conf,
             text,
