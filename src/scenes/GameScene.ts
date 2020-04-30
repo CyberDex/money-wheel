@@ -1,61 +1,69 @@
-import { View, Animation } from 'pixil'
+import { View, Animation, App } from 'pixil'
 import { Wheel } from '../components/Wheel'
 import { store } from 'redux/store'
 import { States } from 'helpers/enums/States'
 import { revealResult } from 'redux/actions'
 import * as config from '../config/scenes/gameScene.json'
 import * as gameConf from '../config/game.json'
+import { Sprite } from 'pixi.js'
 
 export class GameScene extends View {
-    public wheel: Wheel
-    private animation: Animation
+	public wheel: Sprite
+	private readonly animation: Animation
 
-    constructor() {
-        super()
+	public constructor(private readonly app: App) {
+		super()
 
-        this.wheel = new Wheel(config.wheel.x, config.wheel.y, config.wheel.radius)
-        this.addChild(this.wheel)
+		this.wheel = new Sprite(app.renderer.generateTexture(new Wheel(0, 0, config.wheel.radius)))
+		this.wheel.anchor.set(.5)
+		this.addChild(this.wheel)
 
-        this.animation = new Animation(
-            this.wheel,
-            {
-                delay: gameConf.spinTime,
-                animate: {
-                    rotation: 1
-                }
-            }
-        )
-        window['wheel'] = this.wheel
-        store.subscribe(() => this.stateChange())
-    }
+		this.animation = new Animation(
+			this.wheel,
+			{
+				delay: gameConf.spinTime,
+				animate: {
+					rotation: 1
+				}
+			}
+		)
+		window['wheel'] = this.wheel
+		store.subscribe(() => this.stateChange())
+	}
 
-    private stateChange() {
-        switch (store.getState().state) {
-            case States.SPIN:
-                this.animation.play()
-                break
-            case States.RESULT_LOADED:
-                setTimeout(() => {
-                    this.animation.stop()
+	public onResize(w, h: number) {
+		super.onResize(w, h)
+		this.wheel.x = w / 100 * config.wheel.positionX
+		this.wheel.y = h / 100 * config.wheel.positionY
+	}
 
-                    const angle = this.radToDeg(this.wheel.rotation)
-                    const sectorSize = 360 / this.wheel.wheelNumbers.length
-                    const wheelField = store.getState().wheelField
+	private stateChange() {
+		switch (store.getState().state) {
+			case States.SPIN:
+				this.animation.play()
+				break
+			case States.RESULT_LOADED:
+				setTimeout(() => {
+					this.animation.stop()
 
-                    // TODO: stop the wheel slowly on this angle
-                    this.wheel.rotation = this.degToRad(-wheelField * sectorSize)
+					const angle = this.radToDeg(this.wheel.rotation)
+					const sectorSize = 360 / gameConf.wheel.length
+					const wheelField = store.getState().wheelField
 
-                    store.dispatch(revealResult())
-                }, gameConf.spinTime * 1000)
-                break
-        }
-    }
+					// TODO: stop the wheel slowly on this angle
+					this.wheel.rotation = this.degToRad(-wheelField * sectorSize)
 
-    private degToRad(deg: number): number {
-        return (deg * Math.PI) / 180
-    }
+					store.dispatch(revealResult())
+				}, gameConf.spinTime * 1000)
+				break
+		}
+	}
 
-    private radToDeg(rad: number): number {
-        return rad * 180 * Math.PI
-    }
+	private degToRad(deg: number): number {
+		return (deg * Math.PI) / 180
+	}
+
+	private radToDeg(rad: number): number {
+		return rad * 180 * Math.PI
+	}
 }

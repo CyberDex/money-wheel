@@ -1,7 +1,7 @@
 {
     "wheel": {
-        "x": 50,
-        "y": 100,
-        "radius": 400
+        "positionX": 50,
+        "positionY": 100,
+        "radius": 600
     }
 }
