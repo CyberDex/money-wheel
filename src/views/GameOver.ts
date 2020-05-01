@@ -1,4 +1,4 @@
-import { View, Button, Label } from 'pixil'
+import { View, Button, Label, App } from 'pixil'
 import { Texts } from 'helpers/enums/Texts'
 import { store } from '../redux/store'
 import { Actions } from '../helpers/enums/Actions';
@@ -10,7 +10,7 @@ import { TextStyle } from 'pixi.js';
 export class GameOver extends View {
     private restartButton: Button
 
-    constructor() {
+    constructor(private readonly app: App) {
         super()
         this.addChild(new Label(text(Texts.GAME_OVER_TITLE), style.title as TextStyle, config.title.x, config.title.y))
         this.addChild(new Label(text(Texts.GAME_OVER_TEXT), style.subTitle as TextStyle, config.subtitle.x, config.subtitle.y))

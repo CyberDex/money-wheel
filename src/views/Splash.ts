@@ -1,4 +1,4 @@
-import { View, Slider, Button, Label } from 'pixil'
+import { View, Slider, Button, Label, App } from 'pixil'
 import { Texts } from 'helpers/enums/Texts'
 import { text } from '../helpers/help'
 import { store } from '../redux/store'
@@ -14,7 +14,7 @@ export class Splash extends View {
     private slider: Slider
     private startButton: Button
 
-    constructor() {
+    constructor(private readonly app: App) {
         super()
         this.addChild(new Label(text(Texts.START_TITLE), style.title as TextStyle, config.title.x, config.title.y))
         this.balance = new Label(gameConf.minStartBalance, style.subTitle as TextStyle, config.subtitle.x, config.subtitle.y)

@@ -1,9 +1,10 @@
-import { View, Button, Label } from 'pixil'
+import { View, Button, Label, App } from 'pixil'
 import { store } from '../redux/store'
 import { Texts } from 'helpers/enums/Texts'
 import { placeBet, startSpin } from 'redux/actions'
 import { States } from 'helpers/enums/States'
 import { text } from 'helpers/help'
+import { TextStyle } from 'pixi.js'
 import * as style from '../config/styles.json'
 import * as config from '../config/scenes/UIScene.json'
 import * as gameConf from '../config/game.json'
@@ -17,11 +18,11 @@ export class UI extends View {
     private spinButton: Button
     private betNumbers = []
 
-    constructor() {
+    constructor(private readonly app: App) {
         super()
-        this.balance = new Label("", style.label, config.balance.x, config.balance.y)
-        this.winAmount = new Label("", style.label, config.winAmount.x, config.winAmount.y)
-        this.winNumber = new Label("", style.label, config.winNumber.x, config.winNumber.y)
+        this.balance = new Label("", style.label as TextStyle, config.balance.x, config.balance.y)
+        this.winAmount = new Label("", style.label as TextStyle, config.winAmount.x, config.winAmount.y)
+        this.winNumber = new Label("", style.label as TextStyle, config.winNumber.x, config.winNumber.y)
         this.addChild(this.balance)
         this.addChild(this.winAmount)
         this.addChild(this.winNumber)
@@ -34,7 +35,7 @@ export class UI extends View {
                 style.button,
                 () => store.dispatch(placeBet(betNumber, 1))
             )
-            this.betsVal[betNumber] = new Label("", style.label, 0, 0)
+            this.betsVal[betNumber] = new Label("", style.label as TextStyle, 0, 0)
             this.addChild(this.betsVal[betNumber])
         })
 

@@ -15,42 +15,55 @@ new class MoneyWheel extends App {
 	public constructor() {
 		super({ antialias: true })
 		document.body.appendChild(this.view)
+		this.init()
+	}
 
+	private async init() {
+		// this.scenes.add(Scenes.PRELOAD, new Preload(this))
+
+		await this.initLocal()
+		await this.loadAssets()
+
+		this.views.add(Scenes.SPLASH, new Splash(this))
+		this.views.add(Scenes.GAME, new Game(this))
+		this.views.add(Scenes.UI, new UI(this))
+		this.views.add(Scenes.GAME_OVER, new GameOver(this))
+
+		this.layout.update()
+
+		store.subscribe(() => this.switchScene())
+	}
+
+	private async initLocal() {
 		const queryString = window.location.search
 		const urlParams = new URLSearchParams(queryString)
 		this.preloader = new PreloadController(this)
 		const lang = urlParams.get('lang') || 'en'
-		this.loadLang(lang)
-			.catch(() => this.loadLang('en'))
+		await this.loadLang(lang)
+			.catch(async () => await this.loadLang('en'))
 	}
 
 	private loadLang(lang): Promise<void | JSON> {
 		return this.preloader.loadConfig(`config/local/${lang}.json`)
 			.then(lang => {
 				Local.inst(lang)
-				this.init()
 			})
 	}
 
-	private init() {
-		this.scenes.add(Scenes.SPLASH, new Splash())
-		this.scenes.add(Scenes.GAME, new Game(this))
-		this.scenes.add(Scenes.UI, new UI())
-		this.scenes.add(Scenes.GAME_OVER, new GameOver())
-		this.layout.update()
-		store.subscribe(() => this.switchScene())
+	private async loadAssets() {
+
 	}
 
 	private switchScene() {
 		switch (store.getState().state) {
 			case States.INIT:
-				this.scenes.showOnly(Scenes.SPLASH)
+				this.views.showOnly(Scenes.SPLASH)
 				break
 			case States.BETTING:
-				this.scenes.showOnly([Scenes.UI, Scenes.GAME])
+				this.views.showOnly([Scenes.UI, Scenes.GAME])
 				break
 			case States.GAME_OVER:
-				this.scenes.showOnly(Scenes.GAME_OVER)
+				this.views.showOnly(Scenes.GAME_OVER)
 				break
 		}
 	}
