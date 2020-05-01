@@ -10,10 +10,16 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v1
 
-            - name: Build
+            - name: Init submodules
               run: |
                   git submodule update --init --recursive
+
+            - name: Istall dependencys
+              run: |
                   npm install
+
+            - name: Build
+              run: |
                   npm run-script build
 
             - name: Deploy
