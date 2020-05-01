@@ -16,8 +16,16 @@ new class MoneyWheel extends App {
 		super({ antialias: true })
 		document.body.appendChild(this.view)
 
+		const queryString = window.location.search
+		const urlParams = new URLSearchParams(queryString)
 		this.preloader = new PreloadController(this)
-		this.preloader.loadConfig('config/local/en.json')
+		const lang = urlParams.get('lang') || 'en'
+		this.loadLang(lang)
+			.catch(() => this.loadLang('en'))
+	}
+
+	private loadLang(lang): Promise<void | JSON> {
+		return this.preloader.loadConfig(`config/local/${lang}.json`)
 			.then(lang => {
 				Local.inst(lang)
 				this.init()
