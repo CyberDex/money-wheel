@@ -1,4 +1,4 @@
-import * as lang from '../config/local/en.json'
 import { Texts } from './enums/Texts'
+import { Local } from '../controllers/Local';
 
-export const text = (text: Texts) => lang[text]
+export const text = (text: Texts) => Local.inst().get(text)

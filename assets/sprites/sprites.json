@@ -1,6 +1,6 @@
 {"frames": {
 
-"images/wheel.png":
+"assets/images/wheel.png":
 {
 	"frame": {"x":1,"y":1,"w":805,"h":805},
 	"rotated": false,
@@ -15,6 +15,6 @@
 	"format": "RGBA8888",
 	"size": {"w":807,"h":807},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:cffe00302449efec4e933c39ca8354e9:2bd53c764428317dc2e636989679c09c:1eabdf11f75e3a4fe3147baf7b5be24b$"
+	"smartupdate": "$TexturePacker:SmartUpdate:4af5d1cbc3c130e1e95e0f668e5343bc:2bd53c764428317dc2e636989679c09c:1eabdf11f75e3a4fe3147baf7b5be24b$"
 }
 }

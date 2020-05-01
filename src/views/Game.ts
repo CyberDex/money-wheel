@@ -27,7 +27,6 @@ export class Game extends View {
 				}
 			}
 		)
-		window['wheel'] = this.wheel
 		store.subscribe(() => this.stateChange())
 	}
 
