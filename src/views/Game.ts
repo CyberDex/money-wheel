@@ -4,7 +4,7 @@ import { store } from 'redux/store'
 import { States } from 'helpers/enums/States'
 import { revealResult } from 'redux/actions'
 import { Sprite } from 'pixi.js'
-import * as config from '../config/scenes/gameScene.json'
+import * as config from '../config/views/game.json'
 import * as gameConf from '../config/game.json'
 
 export class Game extends View {

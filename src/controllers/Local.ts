@@ -1,4 +1,5 @@
-import { Texts } from '../helpers/enums/Texts';
+import { Texts } from '../helpers/enums/Texts'
+
 export class Local {
     private static instance: Local
     public static inst(lang?: JSON): Local {

@@ -4,7 +4,7 @@ import { store } from '../redux/store'
 import { Actions } from '../helpers/enums/Actions';
 import { text } from 'helpers/help'
 import * as style from '../config/styles.json'
-import * as config from '../config/scenes/PopupScene.json'
+import * as config from '../config/views/popup.json'
 import { TextStyle } from 'pixi.js';
 
 export class GameOver extends View {

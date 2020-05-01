@@ -6,7 +6,7 @@ import { States } from 'helpers/enums/States'
 import { text } from 'helpers/help'
 import { TextStyle } from 'pixi.js'
 import * as style from '../config/styles.json'
-import * as config from '../config/scenes/UIScene.json'
+import * as config from '../config/views/UI.json'
 import * as gameConf from '../config/game.json'
 
 export class UI extends View {

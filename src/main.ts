@@ -8,6 +8,7 @@ import { store } from 'redux/store'
 import { States } from 'helpers/enums/States'
 import { PreloadController } from './controllers/PreloadController'
 import { Local } from './controllers/Local'
+import { GameConfig } from './controllers/GameConfig'
 
 new class MoneyWheel extends App {
 	public preloader: PreloadController
@@ -22,6 +23,7 @@ new class MoneyWheel extends App {
 		// this.scenes.add(Scenes.PRELOAD, new Preload(this))
 
 		await this.initLocal()
+		await this.initGameConfig()
 		await this.loadAssets()
 
 		this.views.add(Scenes.SPLASH, new Splash(this))
@@ -32,6 +34,12 @@ new class MoneyWheel extends App {
 		this.layout.update()
 
 		store.subscribe(() => this.switchScene())
+	}
+
+	private async initGameConfig() {
+		await this.preloader.loadConfig('config/game.json')
+			.then(gameConf => GameConfig.inst(gameConf))
+			.catch(() => console.warn("Game config is missing"))
 	}
 
 	private async initLocal() {
