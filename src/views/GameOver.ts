@@ -1,13 +1,12 @@
 import { View, Button, Label } from 'pixil'
 import { Texts } from 'helpers/enums/Texts'
-import * as style from '../config/styles.json'
-import * as config from '../config/scenes/PopupScene.json'
 import { store } from '../redux/store'
 import { Actions } from '../helpers/enums/Actions';
 import { text } from 'helpers/help'
+import * as style from '../config/styles.json'
+import * as config from '../config/scenes/PopupScene.json'
 
-export class GameOverScene extends View {
-    private description: Label
+export class GameOver extends View {
     private restartButton: Button
 
     constructor() {

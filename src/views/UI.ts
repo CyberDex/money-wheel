@@ -3,12 +3,12 @@ import { store } from '../redux/store'
 import { Texts } from 'helpers/enums/Texts'
 import { placeBet, startSpin } from 'redux/actions'
 import { States } from 'helpers/enums/States'
+import { text } from 'helpers/help'
 import * as style from '../config/styles.json'
 import * as config from '../config/scenes/UIScene.json'
 import * as gameConf from '../config/game.json'
-import { text } from 'helpers/help'
 
-export class UIScene extends View {
+export class UI extends View {
     private balance: Label
     private winAmount: Label
     private winNumber: Label

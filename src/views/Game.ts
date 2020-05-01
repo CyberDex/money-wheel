@@ -3,11 +3,11 @@ import { Wheel } from '../components/Wheel'
 import { store } from 'redux/store'
 import { States } from 'helpers/enums/States'
 import { revealResult } from 'redux/actions'
+import { Sprite } from 'pixi.js'
 import * as config from '../config/scenes/gameScene.json'
 import * as gameConf from '../config/game.json'
-import { Sprite } from 'pixi.js'
 
-export class GameScene extends View {
+export class Game extends View {
 	public wheel: Sprite
 	private readonly animation: Animation
 

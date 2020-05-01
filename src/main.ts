@@ -1,21 +1,21 @@
 import { App } from 'pixil'
 import { Scenes } from 'helpers/enums/Scenes'
-import { SplashScene } from 'scenes/SplashScene'
-import { UIScene } from 'scenes/UIScene'
-import { GameScene } from 'scenes/GameScene'
-import { GameOverScene } from 'scenes/GameOverScene'
+import { Splash } from 'views/Splash'
+import { UI } from 'views/UI'
+import { Game } from 'views/Game'
+import { GameOver } from 'views/GameOver'
 import { store } from 'redux/store'
 import { States } from 'helpers/enums/States'
 
-new class Game extends App {
+new class MoneyWheel extends App {
 	public constructor() {
 		super({ antialias: true })
 		document.body.appendChild(this.view)
 
-		this.scenes.add(Scenes.SPLASH, new SplashScene())
-		this.scenes.add(Scenes.GAME, new GameScene(this))
-		this.scenes.add(Scenes.UI, new UIScene())
-		this.scenes.add(Scenes.GAME_OVER, new GameOverScene())
+		this.scenes.add(Scenes.SPLASH, new Splash())
+		this.scenes.add(Scenes.GAME, new Game(this))
+		this.scenes.add(Scenes.UI, new UI())
+		this.scenes.add(Scenes.GAME_OVER, new GameOver())
 
 		store.subscribe(() => this.switchScene())
 	}

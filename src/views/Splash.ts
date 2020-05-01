@@ -8,7 +8,7 @@ import * as config from '../config/scenes/PopupScene.json'
 import * as gameConf from '../config/game.json'
 
 
-export class SplashScene extends View {
+export class Splash extends View {
     private balance: Label
     private slider: Slider
     private startButton: Button
