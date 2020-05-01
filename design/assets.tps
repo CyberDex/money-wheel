@@ -151,9 +151,9 @@
         <key>autoAliasEnabled</key>
         <true/>
         <key>trimSpriteNames</key>
-        <false/>
-        <key>prependSmartFolderName</key>
         <true/>
+        <key>prependSmartFolderName</key>
+        <false/>
         <key>autodetectAnimations</key>
         <true/>
         <key>globalSpriteSettings</key>
@@ -181,7 +181,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">assets/images/wheel.png</key>
+            <key type="filename">images/wheel.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0,0</point_f>
@@ -199,7 +199,7 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>assets</filename>
+            <filename>images</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

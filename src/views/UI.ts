@@ -62,6 +62,7 @@ export class UI extends View {
     }
 
     private stateChange() {
+        const bets = store.getState().bets
         switch (store.getState().state) {
             case States.BETTING:
                 this.betNumbers.forEach(betNumber => {
@@ -70,7 +71,6 @@ export class UI extends View {
 
                 this.balance.text = text(Texts.BALANCE) + ': ' + store.getState().balance
                 this.spinButton.active = Object.keys(store.getState().bets).length > 0
-                const bets = store.getState().bets
                 if (Object.keys(bets).length) {
                     for (const bet in bets) {
                         this.betsVal[bet].text = bets[bet] ? bets[bet] : ""
@@ -82,8 +82,12 @@ export class UI extends View {
                 }
                 break
             case States.SPIN:
-                this.winAmount.text = ""
+                let allBets = 0
+                for (const bet in store.getState().bets) {
+                    allBets += bets[bet]
+                }
                 this.winNumber.text = ""
+                this.winAmount.text = text(Texts.BET) + ": " + allBets
                 this.spinButton.active = false
                 this.betNumbers.forEach(betNumber => {
                     this.bets[betNumber].active = false
@@ -96,12 +100,12 @@ export class UI extends View {
                     if (typeof state.winNumber === 'string') {
                         this.winNumber.text = text(Texts.MULTIPLY) + " " + parseInt(state.winNumber) + " !!!"
                         if (store.getState().winAmount) {
-                            this.winAmount.text = `${text(Texts.WIN_AMOUNT)}: ${state.winAmount / 2} X 2 = ${state.winAmount}`
+                            this.winAmount.text = `${text(Texts.WIN)}: ${state.winAmount / 2} X 2 = ${state.winAmount}`
                         }
                     } else {
                         this.winNumber.text = text(Texts.WIN_NUMBER) + ': ' + state.winNumber
                         if (store.getState().winAmount) {
-                            this.winAmount.text = `${text(Texts.WIN_AMOUNT)}: ${state.bets[state.winNumber]} X ${state.winNumber} = ${state.winAmount}`
+                            this.winAmount.text = `${text(Texts.WIN)}: ${state.bets[state.winNumber]} X ${state.winNumber} = ${state.winAmount}`
                         }
                     }
                 }
@@ -111,7 +115,7 @@ export class UI extends View {
 
     public onResize(w, h: number) {
         super.onResize(w, h)
-        let x = w / 100 * config.betButton.positionX
+        let x = w / 2 - (this.betNumbers.length * config.betButton.width / 2)
         this.betNumbers.forEach(betNumber => {
             this.bets[betNumber].x = x
             this.bets[betNumber].y = h / 100 * config.betButton.positionY

@@ -1,7 +1,7 @@
 import { App } from 'pixil'
 
 export class PreloadController {
-    constructor(private application: App) { }
+    constructor(private app: App) { }
 
     public loadConfig(config: string): Promise<{}> {
         return new Promise((resolve, reject) => {
@@ -12,8 +12,10 @@ export class PreloadController {
         })
     }
 
-    public async loadAsset(url) {
-        this.application.loader.add(url)
-        await this.application.loader.load()
+    public async loadAsset(url): Promise<any> {
+        return new Promise(async resolve => {
+            this.app.loader.add(url)
+            this.app.loader.load(() => resolve())
+        })
     }
 }

@@ -29,7 +29,6 @@ new class MoneyWheel extends App {
 			this.initGameConfig(),
 			this.loadAssets()
 		])
-
 		this.createLayouts()
 
 		store.subscribe(() => this.updateLayouts())

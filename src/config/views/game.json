@@ -1,7 +1,7 @@
 {
-    "wheel": {
-        "positionX": 50,
-        "positionY": 100,
-        "radius": 600
-    }
+	"wheel": {
+		"bg": "sprites/sprites.png",
+		"positionX": 50,
+		"positionY": 50
+	}
 }

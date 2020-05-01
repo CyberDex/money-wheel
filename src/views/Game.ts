@@ -1,20 +1,19 @@
 import { View, Animation, App } from 'pixil'
-import { Wheel } from '../components/Wheel'
 import { store } from 'redux/store'
 import { States } from 'helpers/enums/States'
 import { revealResult } from 'redux/actions'
-import { Sprite } from 'pixi.js'
 import { gameConf } from "helpers/help"
+import { Wheel } from 'components/Wheel'
 import * as config from '../config/views/game.json'
 
 export class Game extends View {
-	public wheel: Sprite
+	public wheel: Wheel
 	private readonly animation: Animation
 
 	public constructor(private readonly app: App) {
 		super()
 
-		this.wheel = new Sprite(app.renderer.generateTexture(new Wheel(0, 0, config.wheel.radius)))
+		this.wheel = new Wheel(config.wheel.bg)
 		this.wheel.anchor.set(.5)
 		this.addChild(this.wheel)
 
@@ -33,7 +32,9 @@ export class Game extends View {
 	public onResize(w, h: number) {
 		super.onResize(w, h)
 		this.wheel.x = w / 100 * config.wheel.positionX
-		this.wheel.y = h / 100 * config.wheel.positionY
+		h > this.wheel.height
+			? this.wheel.y = h / 100 * config.wheel.positionY
+			: this.wheel.y = this.wheel.height / 2
 	}
 
 	private stateChange() {
