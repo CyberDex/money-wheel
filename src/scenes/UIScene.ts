@@ -15,6 +15,7 @@ export class UIScene extends View {
     private bets: { [bet: string]: Button } = {}
     private betsVal: { [bet: string]: Label } = {}
     private spinButton: Button
+    private betNumbers = []
 
     constructor() {
         super()
@@ -25,16 +26,17 @@ export class UIScene extends View {
         this.addChild(this.winAmount)
         this.addChild(this.winNumber)
 
-        for (const bet in gameConf.bets) {
-            this.bets[bet] = this.addButton(
-                bet,
+        this.betNumbers = [...new Set(gameConf.wheel)]
+        this.betNumbers.forEach(betNumber => {
+            this.bets[betNumber] = this.addButton(
+                betNumber,
                 config.betButton,
                 style.button,
-                () => store.dispatch(placeBet(bet, 1))
+                () => store.dispatch(placeBet(betNumber, 1))
             )
-            this.betsVal[bet] = new Label("", style.label, 0, 0)
-            this.addChild(this.betsVal[bet])
-        }
+            this.betsVal[betNumber] = new Label("", style.label, 0, 0)
+            this.addChild(this.betsVal[betNumber])
+        })
 
         this.spinButton = this.addButton(
             text(Texts.SPIN_BUTTON),
@@ -61,9 +63,10 @@ export class UIScene extends View {
     private stateChange() {
         switch (store.getState().state) {
             case States.BETTING:
-                for (const bet in gameConf.bets) {
-                    this.bets[bet].active = store.getState().balance > 0
-                }
+                this.betNumbers.forEach(betNumber => {
+                    this.bets[betNumber].active = store.getState().balance > 0
+                })
+
                 this.balance.text = text(Texts.BALANCE) + ': ' + store.getState().balance
                 this.spinButton.active = Object.keys(store.getState().bets).length > 0
                 const bets = store.getState().bets
@@ -81,16 +84,16 @@ export class UIScene extends View {
                 this.winAmount.text = ""
                 this.winNumber.text = ""
                 this.spinButton.active = false
-                for (const bet in gameConf.bets) {
-                    this.bets[bet].active = false
-                }
+                this.betNumbers.forEach(betNumber => {
+                    this.bets[betNumber].active = false
+                })
                 this.spinButton.active = false
                 break
             case States.RESULT_REVEAL:
                 if (store.getState().winNumber) {
                     const state = store.getState()
-                    if (state.winNumber === 'X2') {
-                        this.winNumber.text = text(Texts.MULTIPLY) + " 2 !!!"
+                    if (typeof state.winNumber === 'string') {
+                        this.winNumber.text = text(Texts.MULTIPLY) + " " + parseInt(state.winNumber) + " !!!"
                         if (store.getState().winAmount) {
                             this.winAmount.text = `${text(Texts.WIN_AMOUNT)}: ${state.winAmount / 2} X 2 = ${state.winAmount}`
                         }
@@ -108,14 +111,14 @@ export class UIScene extends View {
     public onResize(w, h: number) {
         super.onResize(w, h)
         let x = w / 100 * config.betButton.positionX
-        for (const bet in gameConf.bets) {
-            this.bets[bet].x = x
-            this.bets[bet].y = h / 100 * config.betButton.positionY
+        this.betNumbers.forEach(betNumber => {
+            this.bets[betNumber].x = x
+            this.bets[betNumber].y = h / 100 * config.betButton.positionY
 
-            this.betsVal[bet].x = x
-            this.betsVal[bet].y = h - config.betButton.height * 1.65
+            this.betsVal[betNumber].x = x
+            this.betsVal[betNumber].y = h - config.betButton.height * 1.65
 
             x += config.betButton.width + config.betButton.margin
-        }
+        })
     }
 }

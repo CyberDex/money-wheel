@@ -34,12 +34,12 @@ export function resultLoaded(result: IResult): IAction {
     const bets = store.getState().bets
     let balance = store.getState().balance
     let winAmount = 0
-    if (result.winNumber === 'X2') {
+    if (typeof result.winNumber === 'string') {
         let allBets = 0
         for (const bet in bets) {
             allBets += bets[bet]
         }
-        winAmount = allBets * 2
+        winAmount = allBets * parseInt(result.winNumber)
         balance += winAmount + allBets
     } else if (bets[result.winNumber]) {
         winAmount = bets[result.winNumber] ? bets[result.winNumber] * Number(result.winNumber) : 0
