@@ -1,0 +1,13 @@
+{
+	"START_TITLE": "Началный баланс",
+	"START_BUTTON": "Начать",
+	"GAME_OVER_TITLE": "Игра окончена",
+	"GAME_OVER_TEXT": "У Вас закончились средства",
+	"GAME_OVER_BUTTON": "Перезапуск",
+	"SPIN_BUTTON": "Крутить",
+	"BALANCE": "Баланс",
+	"BET": "Ставка",
+	"WIN_NUMBER": "Выиграшный номер",
+	"WIN_AMOUNT": "Выигрыш",
+	"MULTIPLY": "Множитель"
+}

@@ -1,0 +1,14 @@
+{
+	"START_TITLE": "Starting balance",
+	"START_BUTTON": "Start",
+	"GAME_OVER_TITLE": "Game over",
+	"GAME_OVER_TEXT": "You are out of funds",
+	"GAME_OVER_BUTTON": "Restart",
+	"SPIN_BUTTON": "Spin",
+	"BALANCE": "Balance",
+	"BET": "Bet",
+	"WIN": "Win",
+	"WIN_NUMBER": "Win number",
+	"WIN_AMOUNT": "Win",
+	"MULTIPLY": "Multiply"
+}
