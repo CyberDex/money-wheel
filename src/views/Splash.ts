@@ -5,7 +5,7 @@ import { store } from '../redux/store'
 import { startGame } from 'redux/actions'
 import * as style from '../config/styles.json'
 import * as config from '../config/views/popup.json'
-import * as gameConf from '../config/game.json'
+import { gameConf } from "helpers/help"
 import { TextStyle } from 'pixi.js'
 
 

@@ -1,0 +1,5 @@
+{
+	"gameConfig": "config/game.json",
+	"local": "config/local",
+	"assets": ["sprites/sprites.json"]
+}

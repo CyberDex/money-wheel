@@ -2,7 +2,7 @@ import { Actions } from '../helpers/enums/Actions'
 import { IAction } from '../helpers/interfaces/IAppState';
 import { store } from './store'
 import { API, IResult } from 'api/API';
-import * as gameConf from '../config/game.json'
+import { gameConf } from "helpers/help"
 
 export function startGame(val: number): IAction {
     return {

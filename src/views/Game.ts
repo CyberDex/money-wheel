@@ -4,8 +4,8 @@ import { store } from 'redux/store'
 import { States } from 'helpers/enums/States'
 import { revealResult } from 'redux/actions'
 import { Sprite } from 'pixi.js'
+import { gameConf } from "helpers/help"
 import * as config from '../config/views/game.json'
-import * as gameConf from '../config/game.json'
 
 export class Game extends View {
 	public wheel: Sprite

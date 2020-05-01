@@ -8,7 +8,9 @@ import { store } from 'redux/store'
 import { States } from 'helpers/enums/States'
 import { PreloadController } from './controllers/PreloadController'
 import { Local } from './controllers/Local'
-import { GameConfig } from './controllers/GameConfig'
+import { GameConfig } from 'controllers/GameConfig'
+import * as preloadConf from 'config/preload.json'
+import { IGameConfig } from './helpers/interfaces/IGameConfig';
 
 new class MoneyWheel extends App {
 	public preloader: PreloadController
@@ -22,23 +24,20 @@ new class MoneyWheel extends App {
 	private async init() {
 		// this.scenes.add(Scenes.PRELOAD, new Preload(this))
 
-		await this.initLocal()
-		await this.initGameConfig()
-		await this.loadAssets()
+		await Promise.all([
+			this.initLocal(),
+			this.initGameConfig(),
+			this.loadAssets()
+		])
 
-		this.views.add(Scenes.SPLASH, new Splash(this))
-		this.views.add(Scenes.GAME, new Game(this))
-		this.views.add(Scenes.UI, new UI(this))
-		this.views.add(Scenes.GAME_OVER, new GameOver(this))
+		this.createLayouts()
 
-		this.layout.update()
-
-		store.subscribe(() => this.switchScene())
+		store.subscribe(() => this.updateLayouts())
 	}
 
 	private async initGameConfig() {
-		await this.preloader.loadConfig('config/game.json')
-			.then(gameConf => GameConfig.inst(gameConf))
+		await this.preloader.loadConfig(preloadConf.gameConfig)
+			.then(gameConf => GameConfig.inst(gameConf as IGameConfig))
 			.catch(() => console.warn("Game config is missing"))
 	}
 
@@ -52,17 +51,27 @@ new class MoneyWheel extends App {
 	}
 
 	private loadLang(lang): Promise<void | JSON> {
-		return this.preloader.loadConfig(`config/local/${lang}.json`)
+		return this.preloader.loadConfig(`${preloadConf.local}/${lang}.json`)
 			.then(lang => {
 				Local.inst(lang)
 			})
 	}
 
 	private async loadAssets() {
-
+		preloadConf.assets.forEach(async asset => {
+			await this.preloader.loadAsset(asset)
+		})
 	}
 
-	private switchScene() {
+	private createLayouts() {
+		this.views.add(Scenes.SPLASH, new Splash(this))
+		this.views.add(Scenes.GAME, new Game(this))
+		this.views.add(Scenes.UI, new UI(this))
+		this.views.add(Scenes.GAME_OVER, new GameOver(this))
+		this.layout.update()
+	}
+
+	private updateLayouts() {
 		switch (store.getState().state) {
 			case States.INIT:
 				this.views.showOnly(Scenes.SPLASH)

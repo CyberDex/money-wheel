@@ -5,9 +5,9 @@ import { placeBet, startSpin } from 'redux/actions'
 import { States } from 'helpers/enums/States'
 import { text } from 'helpers/help'
 import { TextStyle } from 'pixi.js'
+import { gameConf } from "helpers/help"
 import * as style from '../config/styles.json'
 import * as config from '../config/views/UI.json'
-import * as gameConf from '../config/game.json'
 
 export class UI extends View {
     private balance: Label

@@ -1,6 +1,6 @@
 import { View } from 'pixil'
 import { Graphics, Text } from 'pixi.js'
-import * as gameConf from '../config/game.json'
+import { gameConf } from "helpers/help"
 
 export class Wheel extends View {
     public wheelNumbers: (number | string)[]

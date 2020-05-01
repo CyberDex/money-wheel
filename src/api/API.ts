@@ -1,5 +1,4 @@
-
-import * as gameConf from '../config/game.json'
+import { gameConf } from "helpers/help"
 
 export const API = new class API {
     private async postData(url = '', data = {}) {

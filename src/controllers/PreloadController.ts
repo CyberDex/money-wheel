@@ -3,7 +3,7 @@ import { App } from 'pixil'
 export class PreloadController {
     constructor(private application: App) { }
 
-    public loadConfig(config: string): Promise<JSON> {
+    public loadConfig(config: string): Promise<{}> {
         return new Promise((resolve, reject) => {
             fetch(config)
                 .then(response => response.json())
