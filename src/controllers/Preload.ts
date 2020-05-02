@@ -1,6 +1,6 @@
 import { App } from 'pixil'
 
-export class PreloadController {
+export class Preload {
     public loader = new PIXI.loaders.Loader();
     constructor(private app: App) { }
 
