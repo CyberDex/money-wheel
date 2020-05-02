@@ -6,14 +6,14 @@ import { Game } from 'views/Game'
 import { GameOver } from 'views/GameOver'
 import { store } from 'redux/store'
 import { States } from 'helpers/enums/States'
-import { Preload } from './controllers/Preload'
+import { Preloader } from './controllers/Preloader'
 import { Local } from './controllers/Local'
 import { GameConfig } from 'controllers/GameConfig'
 import * as preloadConf from 'config/preload.json'
 import { IGameConfig } from './helpers/interfaces/IGameConfig';
 
 new class MoneyWheel extends App {
-	public preloader: Preload
+	public preloader: Preloader
 
 	public constructor() {
 		super({ antialias: true })
@@ -43,7 +43,7 @@ new class MoneyWheel extends App {
 	private async initLocal() {
 		const queryString = window.location.search
 		const urlParams = new URLSearchParams(queryString)
-		this.preloader = new Preload(this)
+		this.preloader = new Preloader(this)
 		const lang = urlParams.get('lang') || 'en'
 		await this.loadLang(lang)
 			.catch(async () => await this.loadLang('en'))
