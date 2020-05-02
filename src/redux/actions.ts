@@ -11,7 +11,7 @@ export function startGame(val: number): IAction {
     }
 }
 
-export function placeBet(bet: string, amount: number): IAction {
+export function placeBet(bet: number, amount: number): IAction {
     const balance = store.getState().balance - amount
     const bets = { ...store.getState().bets }
     bets[bet] = bets[bet]

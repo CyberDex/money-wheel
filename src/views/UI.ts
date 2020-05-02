@@ -16,7 +16,7 @@ export class UI extends View {
     private bets: { [bet: string]: Button } = {}
     private betsVal: { [bet: string]: Label } = {}
     private spinButton: Button
-    private betNumbers = []
+    private betNumbers: number[] = []
 
     constructor(private readonly app: App) {
         super()
@@ -27,7 +27,8 @@ export class UI extends View {
         this.addChild(this.winAmount)
         this.addChild(this.winNumber)
 
-        this.betNumbers = [...new Set(gameConf.wheel)]
+        this.betNumbers = [...new Set(gameConf.wheel)].sort((a, b) => a - b);
+
         this.betNumbers.forEach(betNumber => {
             this.bets[betNumber] = this.addButton(
                 betNumber,
@@ -50,7 +51,7 @@ export class UI extends View {
         store.subscribe(() => this.stateChange())
     }
 
-    private addButton(text: string, conf: any = config.betButton, styles, onClick) {
+    private addButton(text: string | number, conf: any = config.betButton, styles, onClick) {
         const button = new Button({
             ...conf,
             text,
