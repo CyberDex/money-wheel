@@ -1,19 +1,12 @@
 {
-    "compilerOptions": {
-        "baseUrl": "src",
-        "paths": {
-            "pixil": [
-                "submodules/pixil/src/index"
-            ]
-        },
-        "module": "commonjs",
-        "target": "ES6",
-        "sourceMap": true,
-        "noImplicitAny": false,
-        "strict": false,
-        "resolveJsonModule": true
-    },
-    "exclude": [
-        "node_modules"
-    ]
+	"compilerOptions": {
+		"baseUrl": "src",
+		"module": "commonjs",
+		"target": "ES6",
+		"sourceMap": true,
+		"noImplicitAny": false,
+		"strict": false,
+		"resolveJsonModule": true
+	},
+	"exclude": ["node_modules"]
 }
