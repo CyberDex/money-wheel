@@ -67,7 +67,6 @@ new class MoneyWheel extends App {
 		this.views.add(Scenes.GAME, new Game(this))
 		this.views.add(Scenes.UI, new UI(this))
 		this.views.add(Scenes.GAME_OVER, new GameOver(this))
-		this.layout.update()
 	}
 
 	private updateLayouts() {

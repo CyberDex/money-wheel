@@ -37,6 +37,7 @@ export class Splash extends View {
         })
         this.addChild(this.startButton)
         this.startButton.onClick(() => {
+            this.app.layout.update()
             store.dispatch(startGame(this.slider.value))
         })
     }
