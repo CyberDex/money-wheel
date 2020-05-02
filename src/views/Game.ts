@@ -26,6 +26,7 @@ export class Game extends View {
 				}
 			}
 		)
+		this.app.layout.update()
 		store.subscribe(() => this.stateChange())
 	}
 
