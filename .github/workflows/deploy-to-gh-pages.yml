@@ -1,24 +1,30 @@
 name: Deploy to GitHub Pages
 on:
-  push:
-    branches:
-      - master
+    push:
+        branches:
+            - master
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v1
 
-    - name: Build
-      run: |
-        git submodule update --init
-        npm install
-        npm run-script build
+            - name: Init submodules
+              run: |
+                  git submodule update --init --recursive
 
-    - name: Deploy
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: dist
+            - name: Istall dependencys
+              run: |
+                  npm install
+
+            - name: Build
+              run: |
+                  npm run-script build
+
+            - name: Deploy
+              uses: JamesIves/github-pages-deploy-action@releases/v3
+              with:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  BRANCH: gh-pages
+                  FOLDER: dist
