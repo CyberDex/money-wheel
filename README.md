@@ -43,12 +43,15 @@ In case balance dropped to zero, Game Over popup is displayed
 
 ## Run the project
 
-Install dependencies
+Copy all this and drop it to the command prompt (you can run them one by one, just remove all "&&")
 ```
-git clone https://github.com/CyberDex/money-wheel.git
-git submodule update --init --recursive
-npm i
+git clone https://github.com/CyberDex/money-wheel.git && 
+cd money-wheel && 
+git submodule update --init --recursive && 
+npm i && 
+npm run dev
 ```
+After that just open the game on https://localhost:8080
 
 #### Local build
 ```
