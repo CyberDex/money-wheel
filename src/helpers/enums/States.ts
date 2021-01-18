@@ -1,8 +1,4 @@
 export enum States {
-    INIT = "INIT",
     BETTING = "BETTING",
     SPIN = "SPIN",
-    RESULT_LOADED = "RESULT_LOADED",
-    RESULT_REVEAL = "RESULT_REVEAL",
-    GAME_OVER = "GAME_OVER",
 }

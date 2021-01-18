@@ -22,7 +22,8 @@ export class Game extends View {
 			{
 				delay: gameConf.spinTime,
 				animate: {
-					rotation: 1
+					rotation: 1,
+					scale: 0.5
 				}
 			}
 		)
@@ -43,11 +44,10 @@ export class Game extends View {
 			case States.SPIN:
 				this.animation.play()
 				break
-			case States.RESULT_LOADED:
+			case States.BETTING:
 				setTimeout(() => {
 					this.animation.stop()
 
-					const angle = this.radToDeg(this.wheel.rotation)
 					const sectorSize = 360 / gameConf.wheel.length
 					const wheelField = store.getState().wheelField
 
