@@ -2,9 +2,9 @@ import { View, Animation, App } from 'pixil'
 import { store } from 'redux/store'
 import { States } from 'helpers/enums/States'
 import { revealResult } from 'redux/actions'
-import { gameConf } from "helpers/help"
+import gameConf from "config/game"
 import { Wheel } from 'components/Wheel'
-import * as config from '../config/views/game.json'
+import config from 'config/views/gameView'
 
 export class Game extends View {
 	public wheel: Wheel

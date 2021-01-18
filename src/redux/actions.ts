@@ -1,8 +1,9 @@
 import { Actions } from '../helpers/enums/Actions'
-import { IAction } from '../helpers/interfaces/IAppState';
+import { IAction } from '../helpers/interfaces/IAppState'
 import { store } from './store'
-import { API, IResult } from 'api/API';
-import { gameConf } from "helpers/help"
+import { API, IResult } from 'api/API'
+import gameConf from "config/game"
+
 
 export function startGame(val: number): IAction {
     return {

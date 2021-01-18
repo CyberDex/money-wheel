@@ -1,13 +1,11 @@
 import { View, Button, Label, App } from 'pixil'
 import { store } from '../redux/store'
-import { Texts } from 'helpers/enums/Texts'
 import { placeBet, startSpin } from 'redux/actions'
 import { States } from 'helpers/enums/States'
-import { text } from 'helpers/help'
 import { TextStyle } from 'pixi.js'
-import { gameConf } from "helpers/help"
-import * as style from '../config/styles.json'
-import * as config from '../config/views/UI.json'
+import gameConf from "config/game"
+import style from 'config/styles'
+import config from 'config/ui'
 
 export class UI extends View {
     private balance: Label
@@ -41,7 +39,7 @@ export class UI extends View {
         })
 
         this.spinButton = this.addButton(
-            text(Texts.SPIN_BUTTON),
+            'spin',
             config.spinButton,
             style.button,
             () => store.dispatch(startSpin())
@@ -70,7 +68,7 @@ export class UI extends View {
                     this.bets[betNumber].active = store.getState().balance > 0
                 })
 
-                this.balance.text = text(Texts.BALANCE) + ': ' + store.getState().balance
+                this.balance.text = 'BALANCE: ' + store.getState().balance
                 this.spinButton.active = Object.keys(store.getState().bets).length > 0
                 if (Object.keys(bets).length) {
                     for (const bet in bets) {
@@ -88,7 +86,7 @@ export class UI extends View {
                     allBets += bets[bet]
                 }
                 this.winNumber.text = ""
-                this.winAmount.text = text(Texts.BET) + ": " + allBets
+                this.winAmount.text = "BET: " + allBets
                 this.spinButton.active = false
                 this.betNumbers.forEach(betNumber => {
                     this.bets[betNumber].active = false
@@ -99,14 +97,14 @@ export class UI extends View {
                 if (store.getState().winNumber) {
                     const state = store.getState()
                     if (typeof state.winNumber === 'string') {
-                        this.winNumber.text = text(Texts.MULTIPLY) + " " + parseInt(state.winNumber) + " !!!"
+                        this.winNumber.text = "MULTIPLY " + parseInt(state.winNumber) + " !!!"
                         if (store.getState().winAmount) {
-                            this.winAmount.text = `${text(Texts.WIN)}: ${state.winAmount / 2} X 2 = ${state.winAmount}`
+                            this.winAmount.text = `WIN: ${state.winAmount / 2} X 2 = ${state.winAmount}`
                         }
                     } else {
-                        this.winNumber.text = text(Texts.WIN_NUMBER) + ': ' + state.winNumber
+                        this.winNumber.text = 'WIN_NUMBER: ' + state.winNumber
                         if (store.getState().winAmount) {
-                            this.winAmount.text = `${text(Texts.WIN)}: ${state.bets[state.winNumber]} X ${state.winNumber} = ${state.winAmount}`
+                            this.winAmount.text = `WIN: ${state.bets[state.winNumber]} X ${state.winNumber} = ${state.winAmount}`
                         }
                     }
                 }
