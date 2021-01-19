@@ -1,7 +1,6 @@
 export default {
     minStartBalance: 10,
     maxStartBalance: 100,
-    spinTime: 3,
     resultRevealTime: 1,
     wheel: [
         48,
