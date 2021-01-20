@@ -1,16 +1,39 @@
-import { App } from 'pixil'
-import { UIView } from 'views/UIView'
+import { Game } from 'pixil'
 import { GameView } from 'views/GameView'
+import { Button, View } from 'pixil'
+new class App extends View {
+  public constructor() {
+    super()
 
-new class Game extends App {
-	public constructor() {
-		super({ antialias: true })
+    Game.getInstance({ antialias: true })
+      .views.add('game', new GameView())
 
-		this.loadAssets(["sprites/sprites.json"])
+    this.addImg({
+      texture: "sprites/sprites.png",
+      positionX: 50,
+      positionY: 50
+    })
 
-		this.views.add('game', new GameView())
-		this.views.add('ui', new UIView())
-		this.views.showOnly(['game', 'ui'])
-		this.layout.update()
-	}
+    this.addChild(
+      new Button({
+        text: 'spin',
+        positionX: 50,
+        positionY: 50,
+        color: 0xde3249,
+        width: 150,
+        height: 60,
+        round: 30,
+        style: {
+          fontFamily: "Arial",
+          fontSize: 24,
+          fontWeight: "bold",
+          fill: "#ffffff",
+        },
+      })
+    )
+  }
+
+  private async loadAssets() {
+    await GAME.loadAssets(["sprites/sprites.json"])
+  }
 }
