@@ -1,6 +1,6 @@
 import { Game } from 'pixil'
-// import { GameView } from 'views/GameView'
 import { Button, View } from 'pixil'
+
 new class App extends View {
   public constructor() {
     super()
