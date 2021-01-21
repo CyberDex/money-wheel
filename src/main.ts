@@ -1,12 +1,12 @@
 import { Game } from 'pixil'
-import { GameView } from 'views/GameView'
+// import { GameView } from 'views/GameView'
 import { Button, View } from 'pixil'
 new class App extends View {
   public constructor() {
     super()
 
-    Game.getInstance({ antialias: true })
-      .views.add('game', new GameView())
+    const game = Game.getInstance({ antialias: true })
+    game.views.add('game', this)
 
     this.addImg({
       texture: "sprites/sprites.png",
