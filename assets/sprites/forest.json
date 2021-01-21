@@ -1,0 +1,52 @@
+{"frames": {
+
+"Carved_Shape":
+{
+	"frame": {"x":40,"y":2,"w":97,"h":69},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":8,"w":97,"h":69},
+	"sourceSize": {"w":97,"h":77}
+},
+"Log":
+{
+	"frame": {"x":2,"y":99,"w":723,"h":136},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":15,"w":723,"h":136},
+	"sourceSize": {"w":723,"h":161}
+},
+"Moves_Panel":
+{
+	"frame": {"x":140,"y":2,"w":205,"h":91},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":5,"y":1,"w":205,"h":91},
+	"sourceSize": {"w":214,"h":93}
+},
+"MovesLeft":
+{
+	"frame": {"x":2,"y":2,"w":35,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":35,"h":18},
+	"sourceSize": {"w":35,"h":18}
+},
+"Pause_Button":
+{
+	"frame": {"x":348,"y":2,"w":94,"h":109},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":2,"w":94,"h":109},
+	"sourceSize": {"w":100,"h":113}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "forest.png",
+	"format": "RGBA8888",
+	"size": {"w":727,"h":237},
+	"scale": "0.25",
+	"smartupdate": "$TexturePacker:SmartUpdate:e9f8c6a2cbe8f003cbbd3592e8b32687:e08b34a2951f8b0fecf01241d1bb82e6:a6d643a6f90b26fab61d32d3ad5fc4d3$"
+}
+}
