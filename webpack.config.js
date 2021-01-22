@@ -3,7 +3,7 @@ const webpackConfig = require('./webpack/webpack')
 
 module.exports = webpackConfig({
     entryPoints: {
-        main: "src/main.ts"
+        main: "src/Game.ts"
     },
     sourceFolder: "src",
     assetsFolder: "assets",
