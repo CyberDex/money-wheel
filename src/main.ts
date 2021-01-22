@@ -1,12 +1,20 @@
 import { Game, Scene } from 'pixil'
 
 new class App extends Scene {
+
   public constructor() {
     super()
+    this.initGame()
+  }
 
+  private async initGame() {
     const game = Game.getInstance()
     game.views.add('game', this)
+    await game.loadAssets(["sprites/forest.json"])
+    this.initScene()
+  }
 
+  private initScene() {
     this.addButton({
       text: 'spin',
       positionX: 50,
@@ -22,13 +30,16 @@ new class App extends Scene {
         fill: "#ffffff",
       },
       onClick: async () => {
-        await game.loadAssets(["sprites/forest.json"])
-
-        this.addImg({
+        const img = this.addImg({
           positionX: 10,
           positionY: 3,
+          width: 100,
+          height: 100,
           texture: "Pause_Button",
         })
+
+        console.log(img);
+
       }
     })
   }
