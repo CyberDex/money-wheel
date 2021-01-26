@@ -8,7 +8,10 @@ import { GAME } from 'pixil'
     bg: "Log",
     x: 'center',
     y: 'bottom',
-    w: 800,
+    // h: '30%',
+    w: '100%',
+    // maxW: 800,
+    maxH: 150,
   })
 
   const hole1 = btmPanel.addImg({
