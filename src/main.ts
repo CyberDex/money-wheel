@@ -1,35 +1,31 @@
 import { GAME } from 'pixil'
 
-const mainScene = GAME.addScene('main', ["sprites/forest.json"])
-  .then((scene) => {
+(async () => {
+  const mainScene = GAME.addScene('main')
+  await mainScene.preload(["sprites/forest.json"])
 
-    scene.addImg({
-      bg: "Log",
-      y: 'bottom',
-      w: '100%',
-    })
-
-    // mainScene.addImg({
-    //   texture: "Carved_Shape",
-    //   x: '40%',
-    //   y: 'bottom',
-    //   w: 300,
-    //   h: 250,
-    // })
-
-    // mainScene.addImg({
-    //   texture: "Carved_Shape",
-    //   x: '55%',
-    //   y: 'bottom',
-    //   w: 300,
-    //   h: 250,
-    // })
-
-    // mainScene.addImg({
-    //   texture: "Carved_Shape",
-    //   x: '70%',
-    //   y: 'bottom',
-    //   w: 300,
-    //   h: 250,
-    // })
+  const btmPanel = mainScene.addImg({
+    bg: "Log",
+    x: 'center',
+    y: 'bottom',
+    w: 800,
   })
+
+  const hole1 = btmPanel.addImg({
+    bg: "Carved_Shape",
+    x: -300,
+    y: -335,
+  })
+
+  const hole2 = btmPanel.addImg({
+    bg: "Carved_Shape",
+    x: 150,
+    y: -335,
+  })
+
+  const hole3 = btmPanel.addImg({
+    bg: "Carved_Shape",
+    x: 600,
+    y: -335,
+  })
+})()
